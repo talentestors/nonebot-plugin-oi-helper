@@ -1,5 +1,6 @@
 from functools import lru_cache
 import json
+from venv import logger
 from nonebot import get_plugin_config
 from .config import Config
 import os
@@ -16,6 +17,7 @@ def ensure_dir_exists(file_path):
 def load_json(file_name) -> dict:
     path = os.path.join(os.path.dirname(__file__), file_name)
     if not os.path.exists(path):
+        logger.error(f"File {file_name} does not exist")
         return {}
     try:
         with open(path, encoding="utf8") as f:

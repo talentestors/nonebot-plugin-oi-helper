@@ -8,9 +8,9 @@ class ScopedConfig(BaseModel):
 
 
 class Config(BaseModel):
-    clist_api: ScopedConfig
+    clist: ScopedConfig
 
-    @field_validator("api")
+    @field_validator("clist")
     @classmethod
     def check_priority(cls, v: ScopedConfig) -> ScopedConfig:
         if v.user_key is None or v.username is None:

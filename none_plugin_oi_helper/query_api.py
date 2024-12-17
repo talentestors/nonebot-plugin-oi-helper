@@ -67,6 +67,8 @@ async def get_contest_data(file_name: str, is_ok, format=json2json):
         host = contest["host"]
         if is_ok(start_time, end_time, host):
             result.append(contest)
+            logger.debug(f"Get contest: {contest}")
+    logger.trace(f"Get contest data: {result}")
     return format(result)
 
 

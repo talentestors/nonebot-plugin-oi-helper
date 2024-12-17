@@ -8,12 +8,20 @@ authors = [{ name = "talentestors", email = "talentestors@outlook.com" }]
 
 license = "AGPL-3.0-or-later"
 dependencies = [
-    "nonebot2[aiohttp]>=2.4.0",
+    "nonebot-plugin-apscheduler>=0.5.0",
+    "nonebot2[aiohttp,fastapi]>=2.4.0",
     "requests>=2.32.3",
 ]
 
 [dependency-groups]
 dev = [
+    "nonebot-adapter-console>=0.6.0",
+    "nonebug>=0.4.3",
     "pip>=24.3.1",
+    "pytest-asyncio>=0.25.0",
 ]
 
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+filterwarnings = ["ignore:Module already imported:pytest.PytestWarning"]

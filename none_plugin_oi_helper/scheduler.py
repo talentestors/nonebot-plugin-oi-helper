@@ -17,7 +17,7 @@ def scheduler_constroller():
     scheduler controller
     """
     logger.info("Message data loading...")
-    # asyncio.run(init())
+    asyncio.run(init())
     logger.info("Message data loaded.\n")
     require("nonebot_plugin_apscheduler")
     return scheduler
@@ -39,6 +39,7 @@ async def loadContestMsg():
 @scheduler.scheduled_job("cron", hour="2, 14", id="loadContestMsg")
 async def loadContestMsgSchedule():
     await loadContestMsg()
+    logger.success("比赛信息已更新")
 
 
 async def loadLuoGuDailyMsg():
@@ -57,6 +58,7 @@ async def loadLuoGuDailyMsg():
 @scheduler.scheduled_job("interval", days=1, id="loadLuoGuDailyMsg")
 async def loadLuoGuDailyMsgSchedule():
     await loadLuoGuDailyMsg()
+    logger.success("洛谷日报已更新")
 
 
 async def loadLeetCodeDailyMsg():
@@ -75,4 +77,5 @@ async def loadLeetCodeDailyMsg():
 @scheduler.scheduled_job("interval", days=1, id="loadLeetCodeDailyMsg")
 async def loadLeetCodeDailyMsgSchedule():
     await loadLeetCodeDailyMsg()
+    logger.success("力扣每日一题已更新")
 

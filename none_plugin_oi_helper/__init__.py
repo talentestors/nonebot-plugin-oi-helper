@@ -19,12 +19,12 @@ _config = config
 
 
 def get_api_config():
-    return _config.api
+    return _config.clist
 
 
 api_config = get_api_config()
 logger.info("username: " + api_config.username)
 logger.info("user_key: " + api_config.user_key[:6]+("*" * (len(api_config.user_key) - 6)))
-logger.info("request url: " + _config.api.req_url)
+logger.info("request url: " + _config.clist.req_url)
 task_controller = s_constroller()  # noqa: F841
 logger.info("scheduler controller loaded")

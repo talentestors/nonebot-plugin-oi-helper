@@ -6,7 +6,7 @@ from enum import Enum
 from .utils import leetcode_locale_to_zh, load_json, save_json, config
 import re
 
-api_config = config.clist_api
+api_config = config.clist
 
 
 class Dirs(Enum):
