@@ -174,3 +174,9 @@ pyrightconfig.json
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+
+# cache files
+.cache/
+
+*.txt
+!requirements.txt

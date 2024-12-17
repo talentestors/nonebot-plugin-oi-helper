@@ -1,0 +1,19 @@
+[project]
+name = "none-plugin-oi-helper"
+version = "0.1.0"
+description = "oi-helper"
+readme = "README.md"
+requires-python = ">=3.10, <4.0"
+authors = [{ name = "talentestors", email = "talentestors@outlook.com" }]
+
+license = "AGPL-3.0-or-later"
+dependencies = [
+    "nonebot2[aiohttp]>=2.4.0",
+    "requests>=2.32.3",
+]
+
+[dependency-groups]
+dev = [
+    "pip>=24.3.1",
+]
+
