@@ -1,7 +1,7 @@
 <div align="center">
   <a href="https://v2.nonebot.dev/store"><img src="https://github.com/A-kirami/nonebot-plugin-template/blob/resources/nbp_logo.png" width="180" height="180" alt="NoneBotPluginLogo"></a>
   <br>
-  <p><img src="https://github.com/A-kirami/nonebot-plugin-template/blob/resources/NoneBotPlugin.svg" width="240" alt="NoneBotPluginText"></p>
+  <p><img src="./docs/img/NoneBotPlugin.svg" width="240" alt="NoneBotPluginText"></p>
 </div>
 
 <div align="center">
@@ -22,7 +22,7 @@ _✨ NoneBot 插件简单描述 ✨_
 
 ## 📖 介绍
 
-一个基于 <https://clist.by> v4 接口的查询比赛信息的接口插件。
+一个基于 <https://clist.by> v4 接口的查询 OI/ACM 相关信息的接口插件。
 
 扩展内容：
 
@@ -116,17 +116,44 @@ plugins = ["nonebot-plugin-oi-help"]
 | CLIST__USER_KEY | 是 | 无 | 你的 key |
 | CLIST_API__REQ_URL | 否 | <https://clist.by:443/api/v4/contest/?upcoming=true&filtered=true&order_by=start&format=json> | 自定义查询url |
 
+例如在你的 `.env` 文件里：
+
+```sh
+# OI-helper 配置
+# CLIST_API__REQ_URL =  # clist API 地址
+CLIST__USERNAME = talentestors
+CLIST__USER_KEY = 60e44a5582aa4433b69b99022b3ae4e9
+```
+
 ### 如何获取 clist 的 key？
+
+<details>
+<summary>点击展开</summary>
 
 1. 进入CLIST官网：<https://clist.by/>
 2. 如果你是新用户，你需要新建一账户。
 3. 前往 <https://clist.by/api/v4/doc/> 页面
-    - 也可以去这里进去：
+    也可以去这里进去：
     ![api](docs/img/image.png)
 4. 点 here 获取你的 API KEY
-    - > Accessing the API requires an API key, available to authenticated users _here_.
+    > Accessing the API requires an API key, available to authenticated users _here_.
 
     ![here](docs/img/guide.png)
+
+</details>
+
+### 关于 Filter
+
+<details>
+<summary>点击展开</summary>
+
+默认的clist的url加入了，`filtered=true` 参数。
+
+这意味着你可以在你的账户里面直接配置规则，而不用设置复杂的 url 请求参数。
+
+【TODO】
+
+</details>
 
 ## 🎉 使用
 
