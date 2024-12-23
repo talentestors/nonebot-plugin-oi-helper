@@ -125,6 +125,7 @@ plugins = ["nonebot-plugin-oi-help"]
     ![api](docs/img/image.png)
 4. 点 here 获取你的 API KEY
     - > Accessing the API requires an API key, available to authenticated users _here_.
+      
     ![here](docs/img/guide.png)
 
 ## 🎉 使用
