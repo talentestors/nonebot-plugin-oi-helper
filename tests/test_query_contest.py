@@ -4,7 +4,7 @@ import datetime
 
 
 async def test_query_contest():
-    _data = await query_api.get_contest_data(
+    _data = await query_api._get_contest_data(
         "../tests/contests/contests.json", lambda start, end, host: True
     )
     assert _data is not None, "Failed to get contest data"
@@ -25,12 +25,12 @@ async def test_query_contest():
 
 async def test_get_today_contests():
     dir = query_api.get_dirs().contests.value
-    data = await query_api.get_today_contests(
+    data = await query_api._get_today_contests(
         dir, query_api.json2text(query_api.json2text_for_contest)
     )
     logger.trace(data)
     assert data is not None, "Failed to get today contests"
-    data = await query_api.get_today_contests(dir)
+    data = await query_api._get_today_contests(dir)
     now = datetime.datetime.now()
     today = now - datetime.timedelta(
         hours=now.hour, minutes=now.minute, seconds=now.second
@@ -48,12 +48,12 @@ async def test_get_today_contests():
 
 async def test_get_towmorrow_contests():
     dir = query_api.get_dirs().contests.value
-    data = await query_api.get_tomorrow_contests(
+    data = await query_api._get_tomorrow_contests(
         dir, query_api.json2text(query_api.json2text_for_contest)
     )
     assert data is not None, "Failed to get tomorrow contests"
     logger.trace(data)
-    data = await query_api.get_tomorrow_contests(dir)
+    data = await query_api._get_tomorrow_contests(dir)
     now = datetime.datetime.now()
     today = now - datetime.timedelta(
         hours=now.hour, minutes=now.minute, seconds=now.second

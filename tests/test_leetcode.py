@@ -4,7 +4,7 @@ from nonebot import logger
 
 
 async def test_get_leetcode_daily():
-    data = await query_api.get_leetcode_daily()
+    data = await query_api._get_leetcode_daily()
     logger.info(data)
     assert data is not None, "data is None"
     assert len(data) > 0, "data is empty"
