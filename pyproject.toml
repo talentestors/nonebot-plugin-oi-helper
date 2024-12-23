@@ -9,7 +9,7 @@ authors = [{ name = "talentestors", email = "talentestors@outlook.com" }]
 license = "AGPL-3.0-or-later"
 dependencies = [
     "nonebot-plugin-apscheduler>=0.5.0",
-    "nonebot2[aiohttp,fastapi]>=2.4.0",
+    "nonebot2[aiohttp]>=2.4.0",
     "requests>=2.32.3",
 ]
 
