@@ -163,7 +163,7 @@ async def get_leetcode_daily():
         >>> data = await get_leetcode_daily()
         >>> print(data)
     """
-    return load_json(dirs.leetcode_daily.value)
+    return [load_json(dirs.leetcode_daily.value)]
 
 
 # Luogu News
