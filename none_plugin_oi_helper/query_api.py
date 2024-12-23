@@ -21,22 +21,211 @@ __all__ = [
     "json2text_for_contest",
     "json2text_for_contest_zh",
     "json2text_get_luogu_news_text",
-    "get_contest_data",
     "get_dirs",
-    "get_today_contests",
-    "get_leetcode_daily",
     "json2text_for_leetcode_daily_info",
+    "json2text",
+    "get_contests_data",
+    "get_today_contests",
     "get_tomorrow_contests",
-    "get_now_contests",
     "get_upcoming_contests",
+    "get_now_contests",
+    "get_leetcode_daily",
+    "get_luogu_news_condition",
     "get_luogu_newest_news",
     "get_luogu_random_news",
-    "json2text",
+    "_get_contest_data",
+    "_get_today_contests",
+    "_get_tomorrow_contests",
+    "_get_upcoming_contests",
+    "_get_now_contests",
+    "_get_leetcode_daily",
+    "_get_luogu_news_condition",
+    "_get_luogu_newest_news",
+    "_get_luogu_random_news"
 ]
 
 
+dirs = get_dirs()
+
+#
+# ================= OI Helper API =================
+#
+
 # Contest
-async def get_contest_data(file_name: str, is_ok, format=json2json):
+
+
+async def get_contests_data(filter):
+    """Get contests data.
+
+    Args:
+        filter (function): start_time, end_time, host -> bool
+
+    Returns:
+        _type_: json
+
+    Example:
+        >>> def is_ok(start, end, host):
+        ...     return datetime.now() < start
+        >>> data = await get_contests_data(is_ok)
+        >>> print(data)
+    """
+    contests = load_json(dirs.contests.value)
+    result = []
+    for contest in contests:
+        start_time = datetime.strptime(contest["start_time"], "%Y-%m-%d %H:%M")
+        end_time = datetime.strptime(contest["end_time"], "%Y-%m-%d %H:%M")
+        host = contest["host"]
+        if filter(start_time, end_time, host):
+            result.append(contest)
+            logger.debug(f"Get contest: {contest}")
+    logger.trace(f"Get contest data: {result}")
+    return result
+
+
+async def get_today_contests():
+    """Get today contest.
+
+    Returns:
+        _type_: json
+
+    Example:
+        >>> data = await get_today_contests()
+        >>> print(data)
+    """
+    now = datetime.now()
+    today = now - timedelta(hours=now.hour, minutes=now.minute, seconds=now.second)
+    tomorrow = today + timedelta(days=1)
+    return await get_contests_data(
+        lambda start, end, host: start >= today and end > now and start < tomorrow
+    )
+
+
+async def get_tomorrow_contests():
+    """Get tomorrow contest.
+
+    Returns:
+        _type_: json
+
+    Example:
+        >>> data = await get_tomorrow_contests()
+        >>> print(data)
+    """
+    now = datetime.now()
+    tomorrow = (
+        now
+        + timedelta(days=1)
+        - timedelta(hours=now.hour, minutes=now.minute, seconds=now.second)
+    )
+    tomorrow_offset = tomorrow + timedelta(days=1)
+    return await get_contests_data(
+        lambda start, end, host: start >= tomorrow and start < tomorrow_offset
+    )
+
+
+async def get_upcoming_contests():
+    """Get upcoming contest.
+
+    Returns:
+        _type_: json
+
+    Example:
+        >>> data = await get_upcoming_contests()
+        >>> print(data)
+    """
+    now = datetime.now()
+    return await get_contests_data(lambda start, end, host: now < start)
+
+
+async def get_now_contests():
+    """Get ongoing contest.
+
+    Returns:
+        _type_: json
+
+    Example:
+        >>> data = await get_now_contests()
+        >>> print(data)
+    """
+    now = datetime.now()
+    return await get_contests_data(lambda start, end, host: now >= start and now < end)
+
+
+# LeetCode Daily
+
+
+async def get_leetcode_daily():
+    """Get LeetCode daily.
+
+    Returns:
+        _type_: json
+
+    Example:
+        >>> data = await get_leetcode_daily()
+        >>> print(data)
+    """
+    return [load_json(dirs.leetcode_daily.value)]
+
+
+# Luogu News
+
+
+async def get_luogu_news_condition(year: int = 0, month: int = 0):
+    """Get Luogu news with date condition.
+
+    Args:
+        year (int): Year. Defaults to 0.
+        month (int): Month. Defaults to 0.
+
+    Returns:
+        _type_: json
+    """
+    news = load_json(dirs.luogu_daily.value)
+    return [
+        new
+        for new in news.values()
+        if (not year or new["year"] == year) and (not month or new["month"] == month)
+    ]
+
+
+async def get_luogu_newest_news():
+    """Get the newest Luogu news.
+
+    Returns:
+        _type_: json
+
+    Example:
+        >>> news = await get_luogu_newest_news()
+        >>> print(news)
+    """
+    now = datetime.now()
+    year = now.year
+    month = now.month
+    return await get_luogu_news_condition(year=year, month=month)
+
+
+async def get_luogu_random_news():
+    """Get a random Luogu news.
+
+    Returns:
+        _type_: json
+
+    Example:
+        >>> news = await get_luogu_random_news()
+        >>> print(news)
+    """
+    news = load_json(dirs.luogu_daily.value)
+    res = random.choice(list(news.keys()))
+    res = [news[res]]
+    return res
+
+
+#
+# ================= OLD API =================
+#
+
+
+# Contest
+async def _get_contest_data(file_name: str, is_ok, format=json2json):
     """Get contest data.
 
     Args:
@@ -72,7 +261,7 @@ async def get_contest_data(file_name: str, is_ok, format=json2json):
     return format(result)
 
 
-async def get_today_contests(file_name: str | list[str], format=json2json):
+async def _get_today_contests(file_name: str | list[str], format=json2json):
     """Get today contest.
 
     Args:
@@ -95,7 +284,7 @@ async def get_today_contests(file_name: str | list[str], format=json2json):
     today = now - timedelta(hours=now.hour, minutes=now.minute, seconds=now.second)
     tomorrow = today + timedelta(days=1)
     if isinstance(file_name, str):
-        result = await get_contest_data(
+        result = await _get_contest_data(
             file_name,
             lambda start, end, host: start >= today and end > now and start < tomorrow,
         )
@@ -104,7 +293,7 @@ async def get_today_contests(file_name: str | list[str], format=json2json):
         result = []
         for file in file_name:
             result.extend(
-                await get_contest_data(
+                await _get_contest_data(
                     file,
                     lambda start, end, host: start >= today
                     and end > now
@@ -114,7 +303,7 @@ async def get_today_contests(file_name: str | list[str], format=json2json):
         return format(result)
 
 
-async def get_tomorrow_contests(file_name: str | list[str], format=json2json):
+async def _get_tomorrow_contests(file_name: str | list[str], format=json2json):
     """Get tomorrow contest.
 
     Args:
@@ -141,7 +330,7 @@ async def get_tomorrow_contests(file_name: str | list[str], format=json2json):
     )
     tomorrow_offset = tomorrow + timedelta(days=1)
     if isinstance(file_name, str):
-        result = await get_contest_data(
+        result = await _get_contest_data(
             file_name,
             lambda start, end, host: start >= tomorrow and start < tomorrow_offset,
         )
@@ -150,7 +339,7 @@ async def get_tomorrow_contests(file_name: str | list[str], format=json2json):
         result = []
         for file in file_name:
             result.extend(
-                await get_contest_data(
+                await _get_contest_data(
                     file,
                     lambda start, end, host: start >= tomorrow
                     and start < tomorrow_offset,
@@ -159,7 +348,7 @@ async def get_tomorrow_contests(file_name: str | list[str], format=json2json):
         return format(result)
 
 
-async def get_upcoming_contests(file_name: str | list[str], format=json2json):
+async def _get_upcoming_contests(file_name: str | list[str], format=json2json):
     """Get upcoming contest.
 
     Args:
@@ -180,18 +369,20 @@ async def get_upcoming_contests(file_name: str | list[str], format=json2json):
     """
     now = datetime.now()
     if isinstance(file_name, str):
-        result = await get_contest_data(file_name, lambda start, end, host: now < start)
+        result = await _get_contest_data(
+            file_name, lambda start, end, host: now < start
+        )
         return format(result)
     else:
         result = []
         for file in file_name:
             result.extend(
-                await get_contest_data(file, lambda start, end, host: now < start)
+                await _get_contest_data(file, lambda start, end, host: now < start)
             )
         return format(result)
 
 
-async def get_now_contests(file_name: str | list[str], format=json2json):
+async def _get_now_contests(file_name: str | list[str], format=json2json):
     """Get ongoing contest.
 
     Args:
@@ -212,7 +403,7 @@ async def get_now_contests(file_name: str | list[str], format=json2json):
     """
     now = datetime.now()
     if isinstance(file_name, str):
-        result = await get_contest_data(
+        result = await _get_contest_data(
             file_name, lambda start, end, host: now >= start and now < end
         )
         return format(result)
@@ -220,7 +411,7 @@ async def get_now_contests(file_name: str | list[str], format=json2json):
         result = []
         for file in file_name:
             result.extend(
-                await get_contest_data(
+                await _get_contest_data(
                     file, lambda start, end, host: now >= start and now < end
                 )
             )
@@ -228,7 +419,7 @@ async def get_now_contests(file_name: str | list[str], format=json2json):
 
 
 # LeetCode Daily
-async def get_leetcode_daily(format=json2json):
+async def _get_leetcode_daily(format=json2json):
     """Get LeetCode daily.
 
     Args:
@@ -250,7 +441,7 @@ async def get_leetcode_daily(format=json2json):
 
 
 # Luogu News
-async def get_luogu_news_condition(year: int = 0, month: int = 0, format=json2json):
+async def _get_luogu_news_condition(year: int = 0, month: int = 0, format=json2json):
     """Get Luogu news with date condition.
 
     Args:
@@ -274,7 +465,7 @@ async def get_luogu_news_condition(year: int = 0, month: int = 0, format=json2js
     return format(ret)
 
 
-async def get_luogu_newest_news(format=json2json):
+async def _get_luogu_newest_news(format=json2json):
     """Get the newest Luogu news.
 
     Args:
@@ -294,11 +485,11 @@ async def get_luogu_newest_news(format=json2json):
     now = datetime.now()
     year = now.year
     month = now.month
-    ret = await get_luogu_news_condition(year=year, month=month, format=json2json)
+    ret = await _get_luogu_news_condition(year=year, month=month, format=json2json)
     return format(ret)
 
 
-async def get_luogu_random_news(format=json2json):
+async def _get_luogu_random_news(format=json2json):
     """Get a random Luogu news.
 
     Args:
