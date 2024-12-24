@@ -1,28 +1,23 @@
 <div align="center">
   <a href="https://v2.nonebot.dev/store"><img src="https://github.com/A-kirami/nonebot-plugin-template/blob/resources/nbp_logo.png" width="180" height="180" alt="NoneBotPluginLogo"></a>
-  <br>
+  </br>
   <p><img src="./docs/img/NoneBotPlugin.svg" width="240" alt="NoneBotPluginText"></p>
 </div>
-
 <div align="center">
 
 # none-plugin-OI-helper
 
 _✨ NoneBot 插件简单描述 ✨_
 
-<a href="./LICENSE">
-    <img src="https://img.shields.io/github/license/talentestors/none-plugin-oi-helper.svg" alt="license">
-</a>
-<a href="https://pypi.python.org/pypi/none-plugin-oi-helper">
-    <img src="https://img.shields.io/pypi/v/none-plugin-oi-helper.svg" alt="pypi">
-</a>
-<img src="https://img.shields.io/badge/python-3.10+-blue.svg" alt="python">
+[![license](https://img.shields.io/github/license/talentestors/none-plugin-oi-helper.svg)](./LICENSE)
+[![pypi](https://img.shields.io/pypi/v/none-plugin-oi-helper.svg)](https://pypi.python.org/pypi/none-plugin-oi-helper)
+![python](https://img.shields.io/badge/python-3.10+-blue.svg)
 
 </div>
 
 ## 📖 介绍
 
-一个基于 <https://clist.by> v4 接口的查询 OI/ACM 相关信息的接口插件。
+一个基于 <https://clist.by> v4 接口，提供 OI/ACM 相关信息查询的 nonebot2 插件。
 
 扩展内容：
 
@@ -151,10 +146,16 @@ CLIST__USER_KEY = 60e44a5582aa4433b69b99022b3ae4e9
 
 这意味着你可以在你的账户里面直接配置规则，而不用设置复杂的 url 请求参数。
 
-【TODO】
+<https://clist.by/settings/filters/>
+
+点击 create 去创建一个规则
+
+`Resources` 项，能筛选对应的平台。
+
+![filter](./docs/img/filter.png)
 
 </details>
 
 ## 🎉 使用
 
-[see docs](./docs/README.md)
+[See docs](./docs/README.md)
