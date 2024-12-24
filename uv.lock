@@ -666,7 +666,36 @@ wheels = [
 ]
 
 [[package]]
-name = "none-plugin-oi-helper"
+name = "nonebot-adapter-console"
+version = "0.6.0"
+source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple" }
+dependencies = [
+    { name = "nonebot2" },
+    { name = "nonechat" },
+    { name = "pydantic" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/25/8d/e7abb677a5bc2c444a8dde1154a69a298f7b290b4b50600a2e568c9ca5ea/nonebot_adapter_console-0.6.0.tar.gz", hash = "sha256:5c708cee111b29579970fe0ad876a711af58d3d8096d7c20e9d0e3a127d1ea07", size = 6298 }
+wheels = [
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/77/fa/64bbe11387abf7885df85cb27544121b96f54e4a1a1126b7a122469f2b1c/nonebot_adapter_console-0.6.0-py3-none-any.whl", hash = "sha256:605ed2635ad593cd6e91228008328b5e7a578ab55e3b3d8fc32ff308ac7711cb", size = 8395 },
+]
+
+[[package]]
+name = "nonebot-plugin-apscheduler"
+version = "0.5.0"
+source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple" }
+dependencies = [
+    { name = "apscheduler" },
+    { name = "nonebot2" },
+    { name = "pydantic" },
+]
+sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/d6/53/019bfea58c506c0166d8ef77959fd8676019469d0d3d8e135ae8f1a4b772/nonebot_plugin_apscheduler-0.5.0.tar.gz", hash = "sha256:6c0230e99765f275dc83d6639ff33bd6f71203fa10cd1b8a204b0f95530cda86", size = 3816 }
+wheels = [
+    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/fb/f4/8a3334dcd91e368d2f4e2b21f4805ac70b5dd8a1f9dac94fea5269e82bd3/nonebot_plugin_apscheduler-0.5.0-py3-none-any.whl", hash = "sha256:8b99b5ee60c4bc195d4df2fd27dab3d6963691e3332f6cee31a06eb4277c307f", size = 4307 },
+]
+
+[[package]]
+name = "nonebot-plugin-oi-helper"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
@@ -696,35 +725,6 @@ dev = [
     { name = "nonebug", specifier = ">=0.4.3" },
     { name = "pip", specifier = ">=24.3.1" },
     { name = "pytest-asyncio", specifier = ">=0.25.0" },
-]
-
-[[package]]
-name = "nonebot-adapter-console"
-version = "0.6.0"
-source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple" }
-dependencies = [
-    { name = "nonebot2" },
-    { name = "nonechat" },
-    { name = "pydantic" },
-    { name = "typing-extensions" },
-]
-sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/25/8d/e7abb677a5bc2c444a8dde1154a69a298f7b290b4b50600a2e568c9ca5ea/nonebot_adapter_console-0.6.0.tar.gz", hash = "sha256:5c708cee111b29579970fe0ad876a711af58d3d8096d7c20e9d0e3a127d1ea07", size = 6298 }
-wheels = [
-    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/77/fa/64bbe11387abf7885df85cb27544121b96f54e4a1a1126b7a122469f2b1c/nonebot_adapter_console-0.6.0-py3-none-any.whl", hash = "sha256:605ed2635ad593cd6e91228008328b5e7a578ab55e3b3d8fc32ff308ac7711cb", size = 8395 },
-]
-
-[[package]]
-name = "nonebot-plugin-apscheduler"
-version = "0.5.0"
-source = { registry = "https://pypi.tuna.tsinghua.edu.cn/simple" }
-dependencies = [
-    { name = "apscheduler" },
-    { name = "nonebot2" },
-    { name = "pydantic" },
-]
-sdist = { url = "https://pypi.tuna.tsinghua.edu.cn/packages/d6/53/019bfea58c506c0166d8ef77959fd8676019469d0d3d8e135ae8f1a4b772/nonebot_plugin_apscheduler-0.5.0.tar.gz", hash = "sha256:6c0230e99765f275dc83d6639ff33bd6f71203fa10cd1b8a204b0f95530cda86", size = 3816 }
-wheels = [
-    { url = "https://pypi.tuna.tsinghua.edu.cn/packages/fb/f4/8a3334dcd91e368d2f4e2b21f4805ac70b5dd8a1f9dac94fea5269e82bd3/nonebot_plugin_apscheduler-0.5.0-py3-none-any.whl", hash = "sha256:8b99b5ee60c4bc195d4df2fd27dab3d6963691e3332f6cee31a06eb4277c307f", size = 4307 },
 ]
 
 [[package]]
