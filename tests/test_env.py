@@ -3,7 +3,7 @@ from nonebot.log import logger
 from dotenv import load_dotenv
 
 
-from none_plugin_oi_helper import config
+from nonebot_plugin_oi_helper import config
 
 # Load the environment variables
 load_dotenv()

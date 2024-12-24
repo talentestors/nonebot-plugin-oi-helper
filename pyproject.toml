@@ -1,5 +1,5 @@
 [project]
-name = "none-plugin-oi-helper"
+name = "nonebot-plugin-oi-helper"
 version = "0.1.0"
 description = "oi-helper"
 readme = "README.md"

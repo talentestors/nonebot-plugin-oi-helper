@@ -1,4 +1,4 @@
-from none_plugin_oi_helper import query_api
+from nonebot_plugin_oi_helper import query_api
 from nonebot import logger
 import datetime
 
