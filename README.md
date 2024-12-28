@@ -1,7 +1,7 @@
 <div align="center">
-  <a href="https://v2.nonebot.dev/store"><img src="https://github.com/A-kirami/nonebot-plugin-template/blob/resources/nbp_logo.png" width="180" height="180" alt="NoneBotPluginLogo"></a>
+  <a href="https://v2.nonebot.dev/store"><img src="https://raw.githubusercontent.com/A-kirami/nonebot-plugin-template/resources/nbp_logo.png" width="180" height="180" alt="NoneBotPluginLogo"></a>
   </br>
-  <p><img src="./docs/img/NoneBotPlugin.svg" width="240" alt="NoneBotPluginText"></p>
+  <p><img src="https://raw.githubusercontent.com/talentestors/nonebot-plugin-oi-helper/refs/heads/main/docs/img/NoneBotPlugin.svg" width="240" alt="NoneBotPluginText"></p>
 </div>
 <div align="center">
 
@@ -158,4 +158,4 @@ CLIST__USER_KEY = 60e44a5582aa4433b69b99022b3ae4e9
 
 ## 🎉 使用
 
-[See docs](./docs/README.md)
+[See docs](https://github.com/talentestors/nonebot-plugin-oi-helper/blob/main/docs/README.md)

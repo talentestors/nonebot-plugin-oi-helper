@@ -1,6 +1,6 @@
 [project]
 name = "nonebot-plugin-oi-helper"
-version = "0.1.0"
+version = "0.1.1"
 description = "A NoneBot2 plugin for querying OI/ACM related information, including LeetCode daily question and Luogu daily report."
 readme = "README.md"
 requires-python = ">=3.10, <4.0"
@@ -48,3 +48,7 @@ asyncio_default_fixture_loop_scope = "session"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = ["pyproject.toml", "README.md", "LICENSE", "nonebot_plugin_oi_helper"]
+exclude = ["tests", "docs"]
