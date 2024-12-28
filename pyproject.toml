@@ -1,12 +1,27 @@
 [project]
 name = "nonebot-plugin-oi-helper"
 version = "0.1.0"
-description = "oi-helper"
+description = "A NoneBot2 plugin for querying OI/ACM related information, including LeetCode daily question and Luogu daily report."
 readme = "README.md"
 requires-python = ">=3.10, <4.0"
 authors = [{ name = "talentestors", email = "talentestors@outlook.com" }]
+license = { text = "AGPL-3.0-or-later" }
 
-license = "AGPL-3.0-or-later"
+keywords = ["nonebot", "plugin", "OI", "ACM", "LeetCode", "Luogu"]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Framework :: AsyncIO",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+]
+
 dependencies = [
     "nonebot-plugin-apscheduler>=0.5.0",
     "nonebot2[aiohttp]>=2.4.0",
@@ -21,6 +36,15 @@ dev = [
     "pytest-asyncio>=0.25.0",
 ]
 
+[project.urls]
+homepage = "https://github.com/talentestors/nonebot-plugin-oi-helper"
+repository = "https://github.com/talentestors/nonebot-plugin-oi-helper"
+documentation = "https://github.com/talentestors/nonebot-plugin-oi-helper#readme"
+
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

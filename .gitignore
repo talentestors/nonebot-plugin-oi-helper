@@ -181,3 +181,6 @@ pyrightconfig.json
 
 *.txt
 !requirements.txt
+
+# Others
+.pypirc
