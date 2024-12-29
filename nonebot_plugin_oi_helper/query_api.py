@@ -23,7 +23,6 @@ __all__ = [
     "json2text_get_luogu_news_text",
     "get_dirs",
     "json2text_for_leetcode_daily_info",
-    "json2text",
     "get_contests_data",
     "get_today_contests",
     "get_tomorrow_contests",
