@@ -17,10 +17,13 @@
 from nonebot.log import logger
 from nonebot.plugin import PluginMetadata
 from .config import Config
-from .scheduler import scheduler_constroller as s_constroller
 from .utils import config
 from . import query_api
+from nonebot import require
 
+require("nonebot_plugin_apscheduler")
+
+from .scheduler import scheduler_constroller as s_constroller  # noqa: E402
 
 __plugin_meta__ = PluginMetadata(
     name="none_plugin_oi_helper",
@@ -52,5 +55,5 @@ logger.info(
     "user_key: " + api_config.user_key[:6] + ("*" * (len(api_config.user_key) - 6))
 )
 logger.info("request url: " + _config.clist.req_url)
-task_controller = s_constroller()  # noqa: F841
+task_controller = s_constroller()
 logger.info("scheduler controller loaded")

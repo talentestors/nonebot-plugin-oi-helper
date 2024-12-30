@@ -1,5 +1,4 @@
 import asyncio
-from nonebot import require
 from nonebot.log import logger
 from nonebot_plugin_apscheduler import scheduler
 from . import api
@@ -19,7 +18,6 @@ def scheduler_constroller():
     logger.info("Message data loading...")
     asyncio.run(init())
     logger.info("Message data loaded.\n")
-    require("nonebot_plugin_apscheduler")
     return scheduler
 
 
@@ -78,4 +76,3 @@ async def loadLeetCodeDailyMsg():
 async def loadLeetCodeDailyMsgSchedule():
     await loadLeetCodeDailyMsg()
     logger.success("力扣每日一题已更新")
-

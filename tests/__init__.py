@@ -9,6 +9,5 @@ env_config = driver.config
 env_run_evironment = str(env_config.environment).strip()
 
 # 加载插件
-nonebot.load_plugin("nonebot_plugin_apscheduler")
-nonebot.load_plugin("none_plugin_oi_helper")
+nonebot.load_plugin("nonebot_plugin_oi_helper")
 logger.info("Plugin loaded")
