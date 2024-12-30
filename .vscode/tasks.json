@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "🗑️ Clean Dist for pwsh",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "Remove-Item -Recurse -Force dist"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
