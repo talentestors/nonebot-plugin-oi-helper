@@ -2,11 +2,24 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "🗑️ Clean Dist for pwsh",
+            "label": "🗑️ Clean Dist",
             "type": "shell",
-            "command": "powershell",
+            "command": "node",
             "args": [
-                "Remove-Item -Recurse -Force dist"
+                "${workspaceFolder}/scripts/clean-dist.js"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "🗑️ Clean Bytecode Of Python",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "${workspaceFolder}/scripts/clean-bytecode.js"
             ],
             "group": {
                 "kind": "build",
