@@ -105,11 +105,11 @@ plugins = ["nonebot-plugin-oi-help"]
 > [!TIP]
 > 需要使用 aiohttp 的驱动器
 
-| 配置项 | 必填 | 默认值 | 说明 |
-|:-----:|:----:|:----:|:----:|
-| CLIST__USERNAME | 是 | 无 | 你的clist用户名 |
-| CLIST__USER_KEY | 是 | 无 | 你的 key |
-| CLIST_API__REQ_URL | 否 | <https://clist.by:443/api/v4/contest/?upcoming=true&filtered=true&order_by=start&format=json> | 自定义查询url |
+|       配置项       | 必填  |                                            默认值                                             |      说明       |
+| :----------------: | :---: | :-------------------------------------------------------------------------------------------: | :-------------: |
+|  CLIST__USERNAME   |  是   |                                              无                                               | 你的clist用户名 |
+|  CLIST__USER_KEY   |  是   |                                              无                                               |    你的 key     |
+| CLIST_API__REQ_URL |  否   | <https://clist.by:443/api/v4/contest/?upcoming=true&filtered=true&order_by=start&format=json> |  自定义查询url  |
 
 例如在你的 `.env` 文件里：
 
