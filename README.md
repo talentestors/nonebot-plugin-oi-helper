@@ -100,7 +100,7 @@ plugins = ["nonebot-plugin-oi-help"]
 
 ## ⚙️ 配置
 
-在 nonebot2 项目的`.env`文件中添加下表中的必填配置
+在 nonebot2 项目的 `.env` 文件中添加下表中的必填配置
 
 > [!TIP]
 > 需要使用 aiohttp 的驱动器
@@ -125,12 +125,11 @@ CLIST__USER_KEY = 60e44a5582aa4433b69b99022b3ae4e9
 <details>
 <summary>点击展开</summary>
 
-1. 进入CLIST官网：<https://clist.by/>
-2. 如果你是新用户，你需要新建一账户。
-3. 前往 <https://clist.by/api/v4/doc/> 页面
-    也可以去这里进去：
+1. 进入 CLIST 官网：<https://clist.by/>
+2. 如果你是新用户，你需要新建一个账户。
+3. 前往 <https://clist.by/api/v4/doc/> 页面也可以从这里进去：
     ![api](docs/img/image.png)
-4. 点 here 获取你的 API KEY
+4. 点 *here* 获取你的 API KEY
     > Accessing the API requires an API key, available to authenticated users _here_.
 
     ![here](docs/img/guide.png)
@@ -142,13 +141,13 @@ CLIST__USER_KEY = 60e44a5582aa4433b69b99022b3ae4e9
 <details>
 <summary>点击展开</summary>
 
-默认的clist的url加入了，`filtered=true` 参数。
+默认的 clist 的 url 加入了，`filtered=true` 参数。
 
 这意味着你可以在你的账户里面直接配置规则，而不用设置复杂的 url 请求参数。
 
 <https://clist.by/settings/filters/>
 
-点击 create 去创建一个规则
+点击 *create* 去创建一个规则
 
 `Resources` 项，能筛选对应的平台。
 
