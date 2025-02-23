@@ -12,6 +12,7 @@ _✨ NoneBot 插件简单描述 ✨_
 [![license](https://img.shields.io/github/license/talentestors/nonebot-plugin-oi-helper.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
 [![pypi](https://img.shields.io/pypi/v/nonebot-plugin-oi-helper.svg)](https://pypi.python.org/pypi/nonebot-plugin-oi-helper)
 ![python](https://img.shields.io/badge/python-3.10+-blue.svg)
+![downloads](https://img.shields.io/pypi/dm/nonebot-plugin-oi-helper)
 
 </div>
 
