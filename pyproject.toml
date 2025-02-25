@@ -51,4 +51,4 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build]
 include = ["pyproject.toml", "README.md", "LICENSE", "nonebot_plugin_oi_helper"]
-exclude = ["tests", "docs"]
+exclude = ["tests", "docs", "nonebot_plugin_oi_helper/.cache"]
