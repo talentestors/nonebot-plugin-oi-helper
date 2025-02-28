@@ -60,7 +60,7 @@ async def handle_leetcode_daily():
 
 
 luogu_random_news = on_command(
-    "随机洛谷日报",
+    "洛谷日报",
     rule=to_me(),
     priority=8,
     block=True,
