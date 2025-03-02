@@ -18,6 +18,7 @@ from nonebot.log import logger
 from nonebot.plugin import PluginMetadata
 from .config import Config
 from .utils import config
+from . import command
 from . import query_api
 from nonebot import require
 
@@ -40,7 +41,7 @@ __plugin_meta__ = PluginMetadata(
     },
 )
 
-__all__ = ["query_api"]
+__all__ = ["command", "query_api"]
 
 _config = config
 
