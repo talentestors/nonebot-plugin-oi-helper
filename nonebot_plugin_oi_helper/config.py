@@ -1,6 +1,7 @@
 from pydantic import BaseModel, field_validator
 from nonebot.log import logger
 
+
 class ScopedConfig(BaseModel):
     user_key: str
     username: str

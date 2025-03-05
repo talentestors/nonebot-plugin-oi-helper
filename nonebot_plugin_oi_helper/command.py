@@ -45,12 +45,7 @@ async def handle_tomorrow_contests():
     await tomorrow_contests.finish(res)
 
 
-leetcode_daily = on_command(
-    "每日一题",
-    rule=to_me(),
-    priority=5,
-    block=True,
-)
+leetcode_daily = on_command("每日一题", rule=to_me(), priority=5, block=True)
 
 
 @leetcode_daily.handle()
@@ -59,12 +54,7 @@ async def handle_leetcode_daily():
     await leetcode_daily.finish(res)
 
 
-luogu_random_news = on_command(
-    "洛谷日报",
-    rule=to_me(),
-    priority=8,
-    block=True,
-)
+luogu_random_news = on_command("洛谷日报", rule=to_me(), priority=8, block=True)
 
 
 @luogu_random_news.handle()

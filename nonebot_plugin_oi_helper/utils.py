@@ -82,37 +82,37 @@ def json2text(formatter=None):
 
 
 def json2text_for_leetcode_daily_info(leetcode_data: dict) -> str:
-    text = f"""{leetcode_data['title']}
-Date: {leetcode_data['date']}
-Difficulty: {leetcode_data['difficulty']}
-URL: {leetcode_data['url']}
+    text = f"""{leetcode_data["title"]}
+Date: {leetcode_data["date"]}
+Difficulty: {leetcode_data["difficulty"]}
+URL: {leetcode_data["url"]}
 """
     return text
 
 
 def json2text_for_contest(contest_data: dict) -> str:
-    text = f"""Name: {contest_data['name']}
-Start Time: {contest_data['start_time']}
-End Time: {contest_data['end_time']}
-Duration: {contest_data['duration']//60} minutes
-Link: {contest_data['link']}
+    text = f"""Name: {contest_data["name"]}
+Start Time: {contest_data["start_time"]}
+End Time: {contest_data["end_time"]}
+Duration: {contest_data["duration"] // 60} minutes
+Link: {contest_data["link"]}
 """
     return text
 
 
 def json2text_for_contest_zh(contest_data: dict) -> str:
-    text = f"""比赛名称: {contest_data['name']}
-开始时间: {contest_data['start_time']}
-结束时间: {contest_data['end_time']}
-时长: {contest_data['duration']//60} 分钟
-链接: {contest_data['link']}
+    text = f"""比赛名称: {contest_data["name"]}
+开始时间: {contest_data["start_time"]}
+结束时间: {contest_data["end_time"]}
+时长: {contest_data["duration"] // 60} 分钟
+链接: {contest_data["link"]}
 """
     return text
 
 
 def json2text_get_luogu_news_text(news: dict) -> str:
-    text = f"""{news['year']}年{news['month']}月
-{news['title']}
-URL: {news['url']}
+    text = f"""{news["year"]}年{news["month"]}月
+{news["title"]}
+URL: {news["url"]}
 """
     return text
