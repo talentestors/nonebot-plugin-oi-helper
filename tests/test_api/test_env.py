@@ -24,10 +24,10 @@ def test_env():
     logger.trace(f"CLIST__USER_KEY: {clist_user_key}")
     logger.trace(f"Require Url: {config.clist.req_url}")
 
-    assert (
-        clist_username == config.clist.username
-    ), "Username is not equal to the config username"
-    assert (
-        clist_user_key == config.clist.user_key
-    ), "User Key is not equal to the config user key"
+    assert clist_username == config.clist.username, (
+        "Username is not equal to the config username"
+    )
+    assert clist_user_key == config.clist.user_key, (
+        "User Key is not equal to the config user key"
+    )
     logger.success("test_env passed")
