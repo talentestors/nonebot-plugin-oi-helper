@@ -129,7 +129,7 @@ CLIST__USER_KEY = 60e44a5582aa4433b69b99022b3ae4e9
 1. 进入 CLIST 官网：<https://clist.by/>
 2. 如果你是新用户，你需要新建一个账户。
 3. 前往 <https://clist.by/api/v4/doc/> 页面也可以从这里进去：
-    ![api](docs/img/image.png)
+    ![api](./docs/img/image.png)
 4. 点 *here* 获取你的 API KEY
     > Accessing the API requires an API key, available to authenticated users _here_.
 
