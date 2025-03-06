@@ -133,7 +133,7 @@ CLIST__USER_KEY = 60e44a5582aa4433b69b99022b3ae4e9
 4. 点 *here* 获取你的 API KEY
     > Accessing the API requires an API key, available to authenticated users _here_.
 
-    ![here](docs/img/guide.png)
+    ![here](./docs/img/guide.png)
 
 </details>
 
