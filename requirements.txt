@@ -41,7 +41,7 @@ multidict==6.1.0
     #   yarl
 nonebot-plugin-apscheduler==0.5.0
     # via nonebot-plugin-oi-helper (pyproject.toml)
-nonebot2==2.4.1
+nonebot2==2.4.2
     # via
     #   nonebot-plugin-oi-helper (pyproject.toml)
     #   nonebot-plugin-apscheduler
