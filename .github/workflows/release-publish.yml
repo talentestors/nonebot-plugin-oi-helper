@@ -2,8 +2,6 @@ name: Publish Release
 
 on:
   push:
-    branches:
-      - main
     tags:
       - "*.*.*"
 
@@ -14,21 +12,30 @@ jobs:
   version-test:
     name: Test next release with pytest
     runs-on: ubuntu-latest
+    environment: pypi
     steps:
-      - uses: ./.github/actions/pytest.yml
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Execute the pytest action
+        uses: ./.github/actions/pytest
+        with:
+          CLIST__USERNAME: ${{ secrets.CLIST__USERNAME }}
+          CLIST__USER_KEY: ${{ secrets.CLIST__USER_KEY }}
 
   release-publish:
     needs: version-test
     name: Publish Release
     runs-on: ubuntu-latest
+    environment: pypi
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
         with:
           enable-cache: true
-          version: "lastest"
 
       - name: Install the project
         run: uv sync --all-extras --dev
@@ -37,11 +44,16 @@ jobs:
         run: |
           uv build --sdist --wheel --out-dir dist/ .
 
+      - name: Get version
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $$GITHUB_OUTPUT
+
       - name: Create a release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          tag_name: ${{ github.ref }}
+          name: ${{ steps.get_version.outputs.VERSION }}
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
           draft: true
           fail_on_unmatched_files: true
           generate_release_notes: true
@@ -52,31 +64,42 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.repository }}-dist
-          path: dist/*x
+          name: ${{ steps.get_version.outputs.VERSION }}-dist
+          path: dist/*
           retention-days: 7
           if-no-files-found: error
 
   pypi-publish:
+    name: Publish to PyPI
     runs-on: ubuntu-latest
+    environment: pypi
     needs: release-publish
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Get version
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $$GITHUB_OUTPUT
+
       - name: Publish the release to PyPI
-        uses: ./.github/actions/pypi-publish.yml
+        uses: ./.github/actions/pypi-publish
         with:
           UV_PUBLISH_TOKEN: ${{ secrets.UV_PUBLISH_TOKEN }}
+          ENV_VERSION: ${{ steps.get_version.outputs.VERSION }}
 
   done:
     runs-on: ubuntu-latest
+    environment: pypi
     needs: [version-test, release-publish, pypi-publish]
     steps:
       - name: Get version
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $$GITHUB_OUTPUT
 
       - name: Notify
         run: |
           echo "All done!"
           echo "Release published to GitHub and PyPI."
           echo "Check the PyPI page at https://pypi.org/project/${{ github.repository }}"
-          echo "Check the GitHub release at httos://github.com/${{ github.repository }}/releases/tag/${{ steps.get_version.outputs.VERSION }}"
+          echo "Check the GitHub release at https://github.com/${{ github.repository }}/releases/tag/${{ steps.get_version.outputs.VERSION }}"

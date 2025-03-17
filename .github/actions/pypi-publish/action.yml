@@ -1,0 +1,34 @@
+name: Publish
+description: 'Publish the release to PyPI'
+
+inputs:
+  UV_PUBLISH_TOKEN:
+    description: 'Token to publish the distribution'
+    required: true
+  ENV_VERSION:
+    description: 'Version of the release'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install uv
+      uses: astral-sh/setup-uv@v5
+      with:
+        enable-cache: true
+
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ inputs.ENV_VERSION }}-dist
+        path: dist/
+
+    - name: Display structure of downloaded files
+      run: ls -R dist/
+      shell: bash
+
+    - name: Publish distribution to PyPI
+      run: |
+        export UV_PUBLISH_TOKEN=${{ inputs.UV_PUBLISH_TOKEN }}
+        uv publish ./dist/*
+      shell: bash
