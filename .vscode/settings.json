@@ -3,5 +3,10 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": [
+            ".github/actions/*.yml"
+        ]
+    }
 }
