@@ -64,7 +64,7 @@ jobs:
       - name: Publish the release to PyPI
         uses: ./.github/actions/pypi-publish.yml
         with:
-          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+          UV_PUBLISH_TOKEN: ${{ secrets.UV_PUBLISH_TOKEN }}
 
   done:
     runs-on: ubuntu-latest
