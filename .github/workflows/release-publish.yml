@@ -46,7 +46,7 @@ jobs:
 
       - name: Get version
         id: get_version
-        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $$GITHUB_OUTPUT
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
 
       - name: Create a release
         uses: softprops/action-gh-release@v2
@@ -80,7 +80,7 @@ jobs:
 
       - name: Get version
         id: get_version
-        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $$GITHUB_OUTPUT
+        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_OUTPUT
 
       - name: Publish the release to PyPI
         uses: ./.github/actions/pypi-publish
@@ -88,18 +88,5 @@ jobs:
           UV_PUBLISH_TOKEN: ${{ secrets.UV_PUBLISH_TOKEN }}
           ENV_VERSION: ${{ steps.get_version.outputs.VERSION }}
 
-  done:
-    runs-on: ubuntu-latest
-    environment: pypi
-    needs: [version-test, release-publish, pypi-publish]
-    steps:
-      - name: Get version
-        id: get_version
-        run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $$GITHUB_OUTPUT
-
-      - name: Notify
-        run: |
-          echo "All done!"
-          echo "Release published to GitHub and PyPI."
-          echo "Check the PyPI page at https://pypi.org/project/${{ github.repository }}"
-          echo "Check the GitHub release at https://github.com/${{ github.repository }}/releases/tag/${{ steps.get_version.outputs.VERSION }}"
+      - name: Notify Status
+        run: echo "Published ${{ steps.get_version.outputs.VERSION }} to PyPI"
