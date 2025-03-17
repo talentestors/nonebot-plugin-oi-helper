@@ -13,6 +13,7 @@ _✨ NoneBot 插件简单描述 ✨_
 [![pypi](https://img.shields.io/pypi/v/nonebot-plugin-oi-helper.svg)](https://pypi.python.org/pypi/nonebot-plugin-oi-helper)
 ![python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![downloads](https://img.shields.io/pypi/dm/nonebot-plugin-oi-helper)
+[![Publish Release](https://github.com/talentestors/nonebot-plugin-oi-helper/actions/workflows/release-publish.yml/badge.svg)](https://github.com/talentestors/nonebot-plugin-oi-helper/actions/workflows/release-publish.yml)
 
 </div>
 
