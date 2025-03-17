@@ -184,3 +184,7 @@ pyrightconfig.json
 
 # Others
 .pypirc
+
+test-results.xml
+test-results-*.xml
+junit/
