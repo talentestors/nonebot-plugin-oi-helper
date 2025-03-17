@@ -15,9 +15,9 @@ class Config(BaseModel):
     @classmethod
     def check_priority(cls, v: ScopedConfig) -> ScopedConfig:
         if v.user_key is None or v.username is None:
-            logger.error("oi-micro-helper: api_key or username is None", v)
-            raise ValueError("oi-micro-helper: api_key or username is None")
+            logger.error("nonebot-plugin-oi-helper: api_key or username is None", v)
+            raise ValueError("nonebot-plugin-oi-helper: api_key or username is None")
         if v.user_key == "" or v.username == "":
-            logger.error("oi-micro-helper: api_key or username is empty", v)
-            raise ValueError("oi-micro-helper: api_key or username is empty")
+            logger.error("nonebot-plugin-oi-helper: api_key or username is empty", v)
+            raise ValueError("nonebot-plugin-oi-helper: api_key or username is empty")
         return v
