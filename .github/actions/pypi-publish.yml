@@ -1,0 +1,32 @@
+name: Publish
+
+on:
+  workflow_call:
+    inputs:
+      UV_PUBLISH_TOKEN:
+        required: true
+        type: string
+  workflow_dispatch:
+
+jobs:
+  pypi-publish:
+    name: Upload release to PyPI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          version: "lastest"
+
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ github.repository }}-dist
+          path: dist/
+
+      - name: Display structure of downloaded files
+        run: ls -R dist/
+
+      - name: Publish distribution to PyPI
+        run: uv publish --dist-dir dist/ --token ${{ inputs.UV_PUBLISH_TOKEN }}
