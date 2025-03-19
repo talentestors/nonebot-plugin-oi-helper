@@ -13,6 +13,6 @@ updates:
     schedule:
       interval: "weekly"
     commit-message:
-      prefix: "ci(deps)"
+      prefix: "🤖 CI(deps)"
     reviewers:
       - talentestors
