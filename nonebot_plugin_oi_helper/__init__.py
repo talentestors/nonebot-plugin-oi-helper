@@ -21,10 +21,13 @@ from .utils import config
 from . import command
 from . import query_api
 from nonebot import require
+from pathlib import Path
 
 require("nonebot_plugin_apscheduler")
+require("nonebot-plugin-localstore")
 
 from .scheduler import scheduler_constroller as s_constroller  # noqa: E402
+import nonebot_plugin_localstore as store  # noqa: E402
 
 __plugin_meta__ = PluginMetadata(
     name="none_plugin_oi_helper",
@@ -49,6 +52,28 @@ _config = config
 def get_api_config():
     return _config.clist
 
+
+plugin_cache_dir: Path = store.get_plugin_cache_dir()
+
+
+class Dirs:
+    contests = ".cache/contests.json"
+    luogu_daily = ".cache/luogu_news.json"
+    leetcode_daily = ".cache/leetcode_daily.json"
+
+    def __init__(self, path: Path):
+        self.contests = path / Dirs.contests
+        self.luogu_daily = path / Dirs.luogu_daily
+        self.leetcode_daily = path / Dirs.leetcode_daily
+
+
+def get_dirs():
+    return Dirs(plugin_cache_dir)
+
+
+logger.info("plugin_cache_dir: " + str(plugin_cache_dir))
+dirs = get_dirs()
+logger.info("dirs: " + str(dirs))
 
 api_config = get_api_config()
 logger.info("username: " + api_config.username)

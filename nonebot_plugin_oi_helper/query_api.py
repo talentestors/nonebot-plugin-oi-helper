@@ -1,5 +1,5 @@
 from nonebot import logger
-from .api import Dirs, get_available_directories as get_dirs  # noqa: F401
+from nonebot_plugin_oi_helper import get_dirs
 from .utils import (
     json2text,
     load_json,
