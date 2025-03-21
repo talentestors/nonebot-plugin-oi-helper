@@ -1,10 +1,40 @@
 import asyncio
+from datetime import datetime, timedelta
 from nonebot_plugin_apscheduler import scheduler
 from nonebot.log import logger
 from . import api
 
 
-@scheduler.scheduled_job("cron", hour="2, 14", id="loadContestMsg")
+async def loadLeetCodeDailyMsg():
+    try:
+        await api.getLeetcodeDaily()
+    except Exception:
+        logger.error("力扣每日一题定时更新时遇到错误：")
+        logger.info("再次尝试获取力扣每日一题信息")
+        try:
+            await api.getLeetcodeDaily()
+        except Exception as e:
+            logger.exception(e)
+            logger.error("再次尝试获取力扣每日一题信息时遇到错误：\n")
+
+
+@scheduler.scheduled_job(
+    "interval",
+    days=1,
+    id="loadLeetCodeDailyMsg",
+    next_run_time=(datetime.now() + timedelta(seconds=0)),
+)
+async def loadLeetCodeDailyMsgSchedule():
+    await loadLeetCodeDailyMsg()
+    logger.success("力扣每日一题已更新")
+
+
+@scheduler.scheduled_job(
+    "cron",
+    hour="2, 14",
+    id="loadContestMsg",
+    next_run_time=(datetime.now() + timedelta(seconds=1)),
+)
 async def loadContestMsgSchedule():
     await loadContestMsg()
     logger.success("比赛信息已更新")
@@ -23,29 +53,15 @@ async def loadLuoGuDailyMsg():
             logger.error("再次尝试获取洛谷日报信息时遇到错误：\n")
 
 
-@scheduler.scheduled_job("interval", days=1, id="loadLuoGuDailyMsg")
+@scheduler.scheduled_job(
+    "interval",
+    days=1,
+    id="loadLuoGuDailyMsg",
+    next_run_time=(datetime.now() + timedelta(seconds=3)),
+)
 async def loadLuoGuDailyMsgSchedule():
     await loadLuoGuDailyMsg()
     logger.success("洛谷日报已更新")
-
-
-async def loadLeetCodeDailyMsg():
-    try:
-        await api.getLeetcodeDaily()
-    except Exception:
-        logger.error("力扣每日一题定时更新时遇到错误：")
-        logger.info("再次尝试获取力扣每日一题信息")
-        try:
-            await api.getLeetcodeDaily()
-        except Exception as e:
-            logger.exception(e)
-            logger.error("再次尝试获取力扣每日一题信息时遇到错误：\n")
-
-
-@scheduler.scheduled_job("interval", days=1, id="loadLeetCodeDailyMsg")
-async def loadLeetCodeDailyMsgSchedule():
-    await loadLeetCodeDailyMsg()
-    logger.success("力扣每日一题已更新")
 
 
 async def init():
