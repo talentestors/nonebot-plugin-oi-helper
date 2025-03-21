@@ -2,7 +2,6 @@ from nonebot import on_command
 from nonebot.rule import to_me
 
 from .query_api import (
-    get_dirs,
     get_today_contests,
     get_tomorrow_contests,
     get_luogu_random_news,
@@ -12,8 +11,6 @@ from .query_api import (
     json2text_get_luogu_news_text,
     json2text_for_contest,
 )
-
-dirs = get_dirs()
 
 format_contests = json2text(json2text_for_contest)
 format_leetcode = json2text(json2text_for_leetcode_daily_info)

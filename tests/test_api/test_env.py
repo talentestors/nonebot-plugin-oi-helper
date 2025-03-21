@@ -1,8 +1,6 @@
 import os
 from nonebot.log import logger
 from dotenv import load_dotenv
-
-
 from nonebot_plugin_oi_helper import config
 
 # Load the environment variables
