@@ -7,7 +7,7 @@
 
 # nonebot-plugin-OI-helper
 
-_✨ NoneBot 插件简单描述 ✨_
+_✨ 一个提供 OI/ACM 相关信息的 nonebot2 插件 ✨_
 
 [![license](https://img.shields.io/github/license/talentestors/nonebot-plugin-oi-helper.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
 [![pypi](https://img.shields.io/pypi/v/nonebot-plugin-oi-helper.svg)](https://pypi.python.org/pypi/nonebot-plugin-oi-helper)
