@@ -7,7 +7,7 @@
 
 # nonebot-plugin-OI-helper
 
-_✨ NoneBot 插件简单描述 ✨_
+_✨ 一个提供 OI/ACM 相关信息的 nonebot2 插件 ✨_
 
 [![license](https://img.shields.io/github/license/talentestors/nonebot-plugin-oi-helper.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
 [![pypi](https://img.shields.io/pypi/v/nonebot-plugin-oi-helper.svg)](https://pypi.python.org/pypi/nonebot-plugin-oi-helper)
@@ -84,7 +84,11 @@ conda install nonebot-plugin-oi-help
 <details>
 <summary>uv</summary>
 
-[uv:](https://github.com/astral-sh/uv) <https://docs.astral.sh/uv/>
+</br>
+
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+
+> Documents: <https://docs.astral.sh/uv/>
 
 ```bash
 uv add nonebot-plugin-oi-help
@@ -132,7 +136,7 @@ CLIST__USER_KEY = 60e44a5582aa4433b69b99022b3ae4e9
 3. 前往 <https://clist.by/api/v4/doc/> 页面也可以从这里进去：
     ![api](./docs/img/image.png)
 4. 点 *here* 获取你的 API KEY
-    > Accessing the API requires an API key, available to authenticated users _here_.
+    > Accessing the API requires an API key, which is available to authenticated users _here_.
 
     ![here](./docs/img/guide.png)
 
