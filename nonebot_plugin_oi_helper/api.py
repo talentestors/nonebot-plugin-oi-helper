@@ -1,14 +1,11 @@
-from nonebot.log import logger
-from datetime import datetime, timedelta
 import requests
 import aiohttp
-from nonebot_plugin_oi_helper import get_dirs
-from .utils import leetcode_locale_to_zh, load_json, save_json, config
 import re
+from nonebot.log import logger
+from datetime import datetime, timedelta
+from .utils import leetcode_locale_to_zh, load_json, save_json, dirs
+from . import api_config
 
-api_config = config.clist
-
-dirs = get_dirs()
 
 async def getContest():
     apikey = f"&username={api_config.username}&api_key={api_config.user_key}"
@@ -41,7 +38,7 @@ async def getContest():
             case "leetcode.com":
                 new_contest = leetcode_locale_to_zh(new_contest)
         contests.append(new_contest)
-    save_json(dirs.contests.value, contests)
+    save_json(dirs.contests, contests)
     load_json.cache_clear()
 
 
@@ -90,7 +87,7 @@ async def getLuoguDaily():
             else:
                 pos += 1
 
-    save_json(dirs.luogu_daily.value, news)
+    save_json(dirs.luogu_daily, news)
     load_json.cache_clear()
 
 
@@ -111,7 +108,7 @@ def checkLeetcodeDailyData(_data) -> bool:
 
 async def getLeetcodeDaily() -> dict:
     load_json.cache_clear()
-    _data = load_json(dirs.leetcode_daily.value)
+    _data = load_json(dirs.leetcode_daily)
     if checkLeetcodeDailyData(_data):
         logger.info("LeetCode Daily Question is lastest.")
         return _data
@@ -167,6 +164,6 @@ async def getLeetcodeDaily() -> dict:
             }
             logger.info("getLeetcodeDaily SUCCESS " + str(response.status))
 
-        save_json(dirs.leetcode_daily.value, data)
+        save_json(dirs.leetcode_daily, data)
         load_json.cache_clear()
     return data

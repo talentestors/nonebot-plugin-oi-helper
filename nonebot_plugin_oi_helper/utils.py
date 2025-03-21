@@ -1,41 +1,54 @@
 from functools import lru_cache
 import json
-from venv import logger
-from nonebot import get_plugin_config
-from .config import Config
-import os
+from nonebot.log import logger
+from pathlib import Path
+import nonebot_plugin_localstore as store
 
-config = get_plugin_config(Config)
+plugin_cache_dir: Path = store.get_plugin_cache_dir()
 
 
-def ensure_dir_exists(file_path):
-    """Ensure the directory exists, create it if it does not exist"""
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+class Dirs:
+    contests = "contests.json"
+    luogu_daily = "luogu_news.json"
+    leetcode_daily = "leetcode_daily.json"
+
+    def __init__(self, path: Path):
+        self.contests = path / Dirs.contests
+        self.luogu_daily = path / Dirs.luogu_daily
+        self.leetcode_daily = path / Dirs.leetcode_daily
+        logger.info(f"Dirs: {self}")
+
+    def __str__(self) -> str:
+        return self.__dict__.__str__()
+
+    @staticmethod
+    def get_dirs(path: Path):
+        if path is not None:
+            return Dirs(path)
+        else:
+            return Dirs("./")
+
+
+dirs = Dirs.get_dirs(plugin_cache_dir)
 
 
 @lru_cache(maxsize=8)
-def load_json(file_name) -> dict:
-    path = os.path.join(os.path.dirname(__file__), file_name)
-    if not os.path.exists(path):
-        logger.error(f"File {file_name} does not exist")
-        return {}
-    try:
-        with open(path, encoding="utf8") as f:
-            data = json.load(f)
-            return data
-    except IOError as e:
-        print(f"Error reading file {file_name}: {e}")
-        return {}
-    except ValueError as e:
-        print(f"Error parsing JSON from file {file_name}: {e}")
-        return {}
+def load_json(file_name: str) -> dict:
+    cache_file: Path = store.get_plugin_cache_file(file_name)
+    logger.debug(f"load_json: {cache_file}")
+    if cache_file.exists():
+        data = cache_file.read_text(encoding="utf8")
+        logger.debug(f"load_json: {data}")
+        return json.loads(data)
+    return {}
 
 
 def save_json(file_name, args):
-    path = os.path.join(os.path.dirname(__file__), file_name)
-    ensure_dir_exists(path)
-    with open(path, "w", encoding="utf8") as f:
-        json.dump(args, f, ensure_ascii=False, indent=2)
+    cache_file: Path = store.get_plugin_cache_file(file_name)
+    logger.debug(f"load_json: {cache_file}")
+    cache_file.write_text(
+        json.dumps(args, ensure_ascii=False, indent=2), encoding="utf8"
+    )
 
 
 # Convert LeetCode to local Chinese version
