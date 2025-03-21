@@ -14,17 +14,13 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from nonebot import require, get_plugin_config
 from nonebot.log import logger
 from nonebot.plugin import PluginMetadata
 from .config import Config
-from .utils import config
-from . import command
-from . import query_api
-from nonebot import require
 
 require("nonebot_plugin_apscheduler")
-
-from .scheduler import scheduler_constroller as s_constroller  # noqa: E402
+require("nonebot_plugin_localstore")
 
 __plugin_meta__ = PluginMetadata(
     name="none_plugin_oi_helper",
@@ -41,20 +37,21 @@ __plugin_meta__ = PluginMetadata(
     },
 )
 
-__all__ = ["command", "query_api"]
 
-_config = config
+config = get_plugin_config(Config)
 
+api_config = config.clist
 
-def get_api_config():
-    return _config.clist
-
-
-api_config = get_api_config()
+logger.info("api_config loaded")
 logger.info("username: " + api_config.username)
 logger.info(
     "user_key: " + api_config.user_key[:6] + ("*" * (len(api_config.user_key) - 6))
 )
-logger.info("request url: " + _config.clist.req_url)
-task_controller = s_constroller()
-logger.info("scheduler controller loaded")
+logger.info("request url: " + config.clist.req_url)
+
+__all__ = ["api_config", "config"]
+
+from .scheduler import scheduler_constroller # noqa: E402
+
+task_controller = scheduler_constroller()
+logger.info("scheduler first controller loaded")

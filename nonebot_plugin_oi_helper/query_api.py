@@ -1,6 +1,8 @@
-from nonebot import logger
-from .api import Dirs, get_available_directories as get_dirs  # noqa: F401
+import random
+from . import logger
+from datetime import datetime, timedelta
 from .utils import (
+    dirs,
     json2text,
     load_json,
     json2json,
@@ -10,10 +12,9 @@ from .utils import (
     json2text_for_contest_zh,
     json2text_get_luogu_news_text,
 )
-from datetime import datetime, timedelta
-import random
 
 __all__ = [
+    "dirs",
     "json2text",
     "load_json",
     "json2json",
@@ -21,7 +22,6 @@ __all__ = [
     "json2text_for_contest",
     "json2text_for_contest_zh",
     "json2text_get_luogu_news_text",
-    "get_dirs",
     "json2text_for_leetcode_daily_info",
     "get_contests_data",
     "get_today_contests",
@@ -34,8 +34,6 @@ __all__ = [
     "get_luogu_random_news",
 ]
 
-
-dirs = get_dirs()
 
 #
 # ================= OI Helper API =================
@@ -59,7 +57,7 @@ async def get_contests_data(filter):
         >>> data = await get_contests_data(is_ok)
         >>> print(data)
     """
-    contests = load_json(dirs.contests.value)
+    contests = load_json(dirs.contests)
     result = []
     for contest in contests:
         start_time = datetime.strptime(contest["start_time"], "%Y-%m-%d %H:%M")
@@ -153,7 +151,7 @@ async def get_leetcode_daily():
         >>> data = await get_leetcode_daily()
         >>> print(data)
     """
-    return [load_json(dirs.leetcode_daily.value)]
+    return [load_json(dirs.leetcode_daily)]
 
 
 # Luogu News
@@ -169,7 +167,7 @@ async def get_luogu_news_condition(year: int = 0, month: int = 0):
     Returns:
         _type_: json
     """
-    news = load_json(dirs.luogu_daily.value)
+    news = load_json(dirs.luogu_daily)
     return [
         new
         for new in news.values()
@@ -203,7 +201,7 @@ async def get_luogu_random_news():
         >>> news = await get_luogu_random_news()
         >>> print(news)
     """
-    news = load_json(dirs.luogu_daily.value)
+    news = load_json(dirs.luogu_daily)
     res = random.choice(list(news.keys()))
     res = [news[res]]
     return res
