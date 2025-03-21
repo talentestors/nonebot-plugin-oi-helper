@@ -93,7 +93,7 @@ async def getLuoguDaily():
 
 LeetCode_Headers = {
     "origin": "https://leetcode-cn.com",
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
 }
 
 
@@ -109,12 +109,14 @@ def checkLeetcodeDailyData(_data) -> bool:
 async def getLeetcodeDaily():
     load_json.cache_clear()
     _data = load_json(dirs.leetcode_daily)
+    logger.debug("LeetCode Daily Question: " + str(_data))
     if checkLeetcodeDailyData(_data):
         logger.info("LeetCode Daily Question is lastest.")
         return _data
     logger.info("LeetCode Daily Question is outdated.")
     logger.info("GET https://leetcode-cn.com")
     async with aiohttp.ClientSession() as session:
+        logger.debug("session created")
         async with session.post(
             "https://leetcode.cn/graphql",
             json={
@@ -125,7 +127,13 @@ async def getLeetcodeDaily():
             headers=LeetCode_Headers,
             timeout=aiohttp.ClientTimeout(total=10),
         ) as response:
-            RawData = await response.json(content_type=None)
+            try:
+                logger.info("response receiving")
+                RawData = await response.json(content_type=None)
+                logger.info("response received")
+            except Exception as e:
+                logger.error("解析响应时出错：" + repr(e))
+                raise e
             EnglishTitle = RawData["data"]["todayRecord"][0]["question"][
                 "questionTitleSlug"
             ]
@@ -141,6 +149,7 @@ async def getLeetcodeDaily():
             headers=LeetCode_Headers,
             timeout=aiohttp.ClientTimeout(total=10),
         ) as response:
+            logger.info("response receiving")
             RawData = await response.json(content_type=None)
             Data = RawData["data"]["question"]
             ID = Data["questionFrontendId"]
@@ -163,7 +172,7 @@ async def getLeetcodeDaily():
                 "date": Date,
             }
             logger.info("getLeetcodeDaily SUCCESS " + str(response.status))
-
+        logger.debug("data: " + str(data))
         save_json(dirs.leetcode_daily, data)
         load_json.cache_clear()
     return data

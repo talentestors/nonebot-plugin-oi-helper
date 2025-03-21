@@ -43,7 +43,7 @@ def load_json(cache_file: Path):
 
 
 def save_json(cache_file: Path, args):
-    logger.debug(f"load_json: {cache_file}")
+    logger.debug(f"save_json: {cache_file}")
     cache_file.write_text(
         json.dumps(args, ensure_ascii=False, indent=2), encoding="utf8"
     )
