@@ -1,7 +1,6 @@
 import pytest
 import nonebot
 from pytest_asyncio import is_async_test
-from nonebot import require
 from nonebot.log import logger
 
 # 导入适配器
@@ -20,5 +19,5 @@ async def after_nonebot_init(after_nonebot_init: None):
     # 加载适配器
     driver = nonebot.get_driver()
     driver.register_adapter(ConsoleAdapter)
-    require("nonebot_plugin_oi_helper")
+    nonebot.load_plugins("nonebot_plugin_oi_helper")
     logger.info("Plugin loaded")
