@@ -22,10 +22,35 @@
                 "${workspaceFolder}/scripts/clean-bytecode.js"
             ],
             "group": {
-                "kind": "build",
+                "kind": "none",
                 "isDefault": true
             },
             "problemMatcher": []
+        },
+        {
+            "label": "📦 Build",
+            "type": "shell",
+            "command": "uv",
+            "args": [
+                "build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
+            "label": "🗑️ Clean nonebot cache",
+            "type": "shell",
+            "command": "uv",
+            "args": [
+                "run",
+                "${workspaceFolder}/scripts/clean-cache.py"
+            ],
+            "group": {
+                "kind": "none",
+                "isDefault": true
+            },
         }
     ]
 }
