@@ -2,7 +2,7 @@
 # requires-python = ">=3.9"
 # dependencies = [
 #     "nonebot-plugin-localstore",
-#     "nonebot2",
+#     "nonebot2[aiohttp]",
 # ]
 # ///
 import nonebot

@@ -87,7 +87,7 @@ async def getLuoguDaily():
             else:
                 pos += 1
 
-    save_json(dirs.luogu_daily, news)
+    save_json(dirs.luogu_news, news)
     load_json.cache_clear()
 
 
@@ -106,7 +106,7 @@ def checkLeetcodeDailyData(_data) -> bool:
     return now - cache_time < timedelta(days=1)
 
 
-async def getLeetcodeDaily() -> dict:
+async def getLeetcodeDaily():
     load_json.cache_clear()
     _data = load_json(dirs.leetcode_daily)
     if checkLeetcodeDailyData(_data):

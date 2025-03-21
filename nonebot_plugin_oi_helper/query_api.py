@@ -151,7 +151,10 @@ async def get_leetcode_daily():
         >>> data = await get_leetcode_daily()
         >>> print(data)
     """
-    return [load_json(dirs.leetcode_daily)]
+    data = load_json(dirs.leetcode_daily)
+    if isinstance(data, list):
+        return data
+    return [data]
 
 
 # Luogu News
@@ -167,10 +170,10 @@ async def get_luogu_news_condition(year: int = 0, month: int = 0):
     Returns:
         _type_: json
     """
-    news = load_json(dirs.luogu_daily)
+    news = load_json(dirs.luogu_news)
     return [
         new
-        for new in news.values()
+        for new in news
         if (not year or new["year"] == year) and (not month or new["month"] == month)
     ]
 
@@ -201,7 +204,7 @@ async def get_luogu_random_news():
         >>> news = await get_luogu_random_news()
         >>> print(news)
     """
-    news = load_json(dirs.luogu_daily)
+    news: dict = load_json(dirs.luogu_news)
     res = random.choice(list(news.keys()))
     res = [news[res]]
     return res
