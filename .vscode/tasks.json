@@ -37,7 +37,7 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
+            }
         },
         {
             "label": "🗑️ Clean nonebot cache",
@@ -51,6 +51,7 @@
                 "kind": "none",
                 "isDefault": true
             },
+            "problemMatcher": []
         }
     ]
 }

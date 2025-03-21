@@ -4,18 +4,18 @@ from nonebot.log import logger
 from pathlib import Path
 import nonebot_plugin_localstore as store
 
-plugin_cache_dir: Path = store.get_plugin_cache_dir()
+plugin_cache_dir: Path = store.get_cache_dir("nonebot_plugin_oi_helper")
 
 
 class Dirs:
-    contests = "contests.json"
-    luogu_daily = "luogu_news.json"
-    leetcode_daily = "leetcode_daily.json"
+    CONTESTS = "contests.json"
+    LUOGU_NEWS = "luogu_news.json"
+    LEETCODE_DAILY = "leetcode_daily.json"
 
     def __init__(self, path: Path):
-        self.contests = path / Dirs.contests
-        self.luogu_daily = path / Dirs.luogu_daily
-        self.leetcode_daily = path / Dirs.leetcode_daily
+        self.contests: Path = path / Dirs.CONTESTS
+        self.luogu_news: Path = path / Dirs.LUOGU_NEWS
+        self.leetcode_daily: Path = path / Dirs.LEETCODE_DAILY
         logger.info(f"Dirs: {self}")
 
     def __str__(self) -> str:
@@ -26,25 +26,23 @@ class Dirs:
         if path is not None:
             return Dirs(path)
         else:
-            return Dirs("./")
+            return Dirs(store.get_plugin_cache_dir())
 
 
-dirs = Dirs.get_dirs(plugin_cache_dir)
+dirs: Dirs = Dirs.get_dirs(plugin_cache_dir)
 
 
 @lru_cache(maxsize=8)
-def load_json(file_name: str) -> dict:
-    cache_file: Path = store.get_plugin_cache_file(file_name)
+def load_json(cache_file: Path):
     logger.debug(f"load_json: {cache_file}")
     if cache_file.exists():
         data = cache_file.read_text(encoding="utf8")
-        logger.debug(f"load_json: {data}")
+        # logger.debug(f"load_json: {data}")
         return json.loads(data)
     return {}
 
 
-def save_json(file_name, args):
-    cache_file: Path = store.get_plugin_cache_file(file_name)
+def save_json(cache_file: Path, args):
     logger.debug(f"load_json: {cache_file}")
     cache_file.write_text(
         json.dumps(args, ensure_ascii=False, indent=2), encoding="utf8"

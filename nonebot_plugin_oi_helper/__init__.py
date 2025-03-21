@@ -19,8 +19,8 @@ from nonebot.log import logger
 from nonebot.plugin import PluginMetadata
 from .config import Config
 
-require("nonebot_plugin_apscheduler")
 require("nonebot_plugin_localstore")
+require("nonebot_plugin_apscheduler")
 
 __plugin_meta__ = PluginMetadata(
     name="none_plugin_oi_helper",
@@ -51,7 +51,7 @@ logger.info("request url: " + config.clist.req_url)
 
 __all__ = ["api_config", "config"]
 
-from .scheduler import scheduler_constroller # noqa: E402
+from .command import *  # noqa: E402, F403
+from .scheduler import *  # noqa: E402, F403
 
-task_controller = scheduler_constroller()
 logger.info("scheduler first controller loaded")
