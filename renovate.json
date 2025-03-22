@@ -1,8 +1,7 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "lockFileMaintenance": {
-        "enabled": true,
-        "lockfile": ["uv.lock", "requirements.txt"]
+        "enabled": true
     },
     "extends": [
         "config:recommended"
