@@ -24,16 +24,16 @@ require("nonebot_plugin_apscheduler")
 
 __plugin_meta__ = PluginMetadata(
     name="none_plugin_oi_helper",
-    description="none_plugin_oi_helper for NoneBot2 plugin",
-    usage="This is a helper library for the none-plugin-oi. Use this library to assist with various operations related to the none-plugin-oi.",
+    description="A NoneBot2 plugin for querying OI/ACM related information, including LeetCode daily question and Luogu daily report.",
+    usage="Provides commands to query OI/ACM-related information, including LeetCode daily challenges and Luogu daily reports.",
     config=Config,
     homepage="https://github.com/talentestors/none-plugin-oi-helper",
     type="library",
     supported_adapters=None,
     extra={
         "author": "talentestors",
-        "version": "0.1.0",
-        "tags": ["nonebot", "plugin", "oi-helper"],
+        "version": "0.4.3",
+        "tags": ["nonebot", "plugin", "OI", "ACM", "LeetCode", "Luogu"],
     },
 )
 

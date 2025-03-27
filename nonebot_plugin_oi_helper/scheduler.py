@@ -29,6 +29,19 @@ async def loadLeetCodeDailyMsgSchedule():
     logger.success("力扣每日一题已更新")
 
 
+async def loadContestMsg():
+    try:
+        await api.getContest()
+    except Exception:
+        logger.error("比赛信息定时更新时遇到错误：")
+        logger.info("再次尝试获取比赛信息")
+        try:
+            await api.getContest()
+        except Exception as e:
+            logger.exception(e)
+            logger.error("再次尝试获取比赛信息时遇到错误：\n")
+
+
 @scheduler.scheduled_job(
     "cron",
     hour="2, 14",
@@ -88,19 +101,6 @@ def scheduler_constroller():
         loop.create_task(init())
     logger.info("Message data loaded.\n")
     return scheduler
-
-
-async def loadContestMsg():
-    try:
-        await api.getContest()
-    except Exception:
-        logger.error("比赛信息定时更新时遇到错误：")
-        logger.info("再次尝试获取比赛信息")
-        try:
-            await api.getContest()
-        except Exception as e:
-            logger.exception(e)
-            logger.error("再次尝试获取比赛信息时遇到错误：\n")
 
 
 scheduler_constroller()
