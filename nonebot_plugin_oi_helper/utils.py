@@ -16,7 +16,7 @@ class Dirs:
         self.contests: Path = path / Dirs.CONTESTS
         self.luogu_news: Path = path / Dirs.LUOGU_NEWS
         self.leetcode_daily: Path = path / Dirs.LEETCODE_DAILY
-        logger.info(f"Dirs: {self}")
+        logger.debug(f"Dirs: {self}")
 
     def __str__(self) -> str:
         return self.__dict__.__str__()

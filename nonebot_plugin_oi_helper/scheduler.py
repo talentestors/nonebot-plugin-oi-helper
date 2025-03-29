@@ -22,7 +22,7 @@ async def loadLeetCodeDailyMsg():
     "interval",
     days=1,
     id="loadLeetCodeDailyMsg",
-    next_run_time=(datetime.now() + timedelta(seconds=0)),
+    next_run_time=(datetime.now() + timedelta(seconds=1)),
 )
 async def loadLeetCodeDailyMsgSchedule():
     await loadLeetCodeDailyMsg()
@@ -46,7 +46,7 @@ async def loadContestMsg():
     "cron",
     hour="2, 14",
     id="loadContestMsg",
-    next_run_time=(datetime.now() + timedelta(seconds=1)),
+    next_run_time=(datetime.now() + timedelta(seconds=2)),
 )
 async def loadContestMsgSchedule():
     await loadContestMsg()

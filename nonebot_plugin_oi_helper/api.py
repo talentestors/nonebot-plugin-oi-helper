@@ -10,7 +10,7 @@ from . import api_config
 async def getContest():
     apikey = f"&username={api_config.username}&api_key={api_config.user_key}"
     url = f"{str(api_config.req_url)}" + apikey
-    logger.info("GET " + url)
+    logger.info("GET " + str(api_config.req_url))
     resp = requests.get(url, timeout=12)
     resp.raise_for_status()
     logger.info("getContest SUCCESS " + str(resp.status_code))
@@ -44,7 +44,7 @@ async def getContest():
 
 async def getLuoguDaily():
     url = "https://www.craft.do/api/share/N0l80k2gv46Psq"
-    logger.info("GET " + url)
+    logger.debug("GET " + url)
     data = requests.get(url=url, timeout=10)
     data.raise_for_status()
     logger.info("getLuoguYuebao SUCCESS " + str(data.status_code))
@@ -128,9 +128,9 @@ async def getLeetcodeDaily():
             timeout=aiohttp.ClientTimeout(total=10),
         ) as response:
             try:
-                logger.info("response receiving")
+                logger.trace("response receiving")
                 RawData = await response.json(content_type=None)
-                logger.info("response received")
+                logger.trace("response received")
             except Exception as e:
                 logger.error("解析响应时出错：" + repr(e))
                 raise e
@@ -149,7 +149,7 @@ async def getLeetcodeDaily():
             headers=LeetCode_Headers,
             timeout=aiohttp.ClientTimeout(total=10),
         ) as response:
-            logger.info("response receiving")
+            logger.trace("response receiving")
             RawData = await response.json(content_type=None)
             Data = RawData["data"]["question"]
             ID = Data["questionFrontendId"]
