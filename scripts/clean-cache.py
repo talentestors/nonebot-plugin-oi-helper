@@ -32,9 +32,38 @@ def clean_cache() -> Path:
     return cache_path
 
 
+# clean .ruff_cache/
+def clean_ruff_cache() -> Path:
+    cache_path = Path(".ruff_cache")
+    if not cache_path.exists():
+        print(f"缓存目录 {cache_path} 不存在。")
+        return cache_path
+    print(f"开始清理缓存目录 {cache_path}。")
+
+    for entry in cache_path.iterdir():
+        try:
+            if entry.is_file():
+                entry.unlink()
+                print(f"已删除文件: {entry}")
+            elif entry.is_dir():
+                shutil.rmtree(entry)
+                print(f"已删除目录: {entry}")
+        except Exception as e:
+            print(f"删除 {entry} 时发生错误: {e}")
+    # 删除缓存目录
+    try:
+        cache_path.rmdir()
+        print(f"已删除缓存目录: {cache_path}")
+    except Exception as e:
+        print(f"删除缓存目录 {cache_path} 时发生错误: {e}")
+    return cache_path
+
+
 if __name__ == "__main__":
     nonebot.init()
     nonebot.load_plugin("nonebot_plugin_localstore")
     cache_path = clean_cache()
     shutil.rmtree(cache_path)
     print(f"已删除缓存目录: {cache_path}")
+    clean_ruff_cache()
+    print(f"已删除缓存目录: {Path('.ruff_cache')}")
