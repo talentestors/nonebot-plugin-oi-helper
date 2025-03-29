@@ -57,24 +57,6 @@ from .command import *  # noqa: E402, F403
 from .scheduler import *  # noqa: E402, F403
 
 drivers = nonebot.get_driver()
-# ruff: noqa F405
-@drivers.on_startup
-def scheduler_constroller():
-    """
-    scheduler controller
-    """
-    logger.info("Message data loading...")
-    try:
-        loop = asyncio.get_running_loop()
-    except RuntimeError:
-        # 没有运行中的事件循环，新建并运行
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-        loop.run_until_complete(init())
-    else:
-        # 已存在运行中的事件循环，创建任务执行
-        loop.create_task(init())
-    logger.info("Message data loaded.\n")
-    return scheduler
+drivers.on_startup(init)  # noqa: F405
 
 logger.info("scheduler first controller loaded")
