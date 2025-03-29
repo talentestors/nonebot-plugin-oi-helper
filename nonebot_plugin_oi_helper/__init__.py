@@ -28,7 +28,7 @@ __plugin_meta__ = PluginMetadata(
     usage="Provides commands to query OI/ACM-related information, including LeetCode daily challenges and Luogu daily reports.",
     config=Config,
     homepage="https://github.com/talentestors/none-plugin-oi-helper",
-    type="library",
+    type="application",
     supported_adapters=None,
     extra={
         "author": "talentestors",
