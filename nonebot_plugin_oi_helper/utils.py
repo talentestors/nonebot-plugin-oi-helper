@@ -4,7 +4,7 @@ from nonebot.log import logger
 from pathlib import Path
 import nonebot_plugin_localstore as store
 
-plugin_cache_dir: Path = store.get_cache_dir("nonebot_plugin_oi_helper")
+plugin_cache_dir: Path = store.get_plugin_cache_dir()
 
 
 class Dirs:
