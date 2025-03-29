@@ -120,7 +120,7 @@ plugins = ["nonebot-plugin-oi-help"]
 例如在你的 `.env` 文件里：
 
 ```ini
-# OI-helper 配置
+# nonebot-plugin-oi-helper 配置
 CLIST__USERNAME=talentestors
 CLIST__USER_KEY=cc4a4d946b628bfbd606b75417daf496bac7e200
 # clist API 地址
