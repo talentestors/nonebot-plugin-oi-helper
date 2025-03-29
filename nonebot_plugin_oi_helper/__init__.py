@@ -14,7 +14,6 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import asyncio
 import nonebot
 from nonebot import require, get_plugin_config
 from nonebot.log import logger
@@ -34,7 +33,7 @@ __plugin_meta__ = PluginMetadata(
     supported_adapters=None,
     extra={
         "author": "talentestors",
-        "version": "0.5.0",
+        "version": "0.5.1",
         "tags": ["nonebot", "plugin", "OI", "ACM", "LeetCode", "Luogu"],
     },
 )
