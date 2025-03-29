@@ -119,11 +119,12 @@ plugins = ["nonebot-plugin-oi-help"]
 
 例如在你的 `.env` 文件里：
 
-```sh
+```ini
 # OI-helper 配置
-# CLIST_API__REQ_URL =  # clist API 地址
-CLIST__USERNAME = talentestors
-CLIST__USER_KEY = 60e44a5582aa4433b69b99022b3ae4e9
+CLIST__USERNAME=talentestors
+CLIST__USER_KEY=cc4a4d946b628bfbd606b75417daf496bac7e200
+# clist API 地址
+# CLIST_API__REQ_URL=
 ```
 
 ### 如何获取 clist 的 key？
