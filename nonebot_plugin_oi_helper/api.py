@@ -1,4 +1,3 @@
-import requests
 import aiohttp
 import re
 from nonebot.log import logger
@@ -11,10 +10,12 @@ async def getContest():
     apikey = f"&username={api_config.username}&api_key={api_config.user_key}"
     url = f"{str(api_config.req_url)}" + apikey
     logger.info("GET " + str(api_config.req_url))
-    resp = requests.get(url, timeout=12)
-    resp.raise_for_status()
-    logger.info("getContest SUCCESS " + str(resp.status_code))
-    data = dict(resp.json())
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, timeout=aiohttp.ClientTimeout(total=12)) as resp:
+            resp.raise_for_status()
+            logger.info("getContest SUCCESS " + str(resp.status))
+            data = await resp.json()
+
     contests = []
     for contest in data["objects"]:
         name = contest["event"]
@@ -45,14 +46,16 @@ async def getContest():
 async def getLuoguDaily():
     url = "https://www.craft.do/api/share/N0l80k2gv46Psq"
     logger.debug("GET " + url)
-    data = requests.get(url=url, timeout=10)
-    data.raise_for_status()
-    logger.info("getLuoguYuebao SUCCESS " + str(data.status_code))
-    data = data.json()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            url, timeout=aiohttp.ClientTimeout(total=10)
+        ) as response:
+            response.raise_for_status()
+            logger.info("getLuoguYuebao SUCCESS " + str(response.status))
+            data = await response.json()
+
     tmp = {block["id"]: block for block in data["blocks"]}
-
     top = data["blocks"][0]["id"]
-
     news = {}
 
     for title_id in tmp[top]["blocks"]:
