@@ -25,7 +25,7 @@ require("nonebot_plugin_apscheduler")
 
 __plugin_meta__ = PluginMetadata(
     name="nonebot-plugin-OI-helper",
-    description="用于查询 OI/ACM 相关信息（包括 LeetCode 每日一题和 洛谷日报）的 NoneBot2 插件。",
+    description="用于查询 OI/ACM 相关信息（包括 LeetCode 每日一题和洛谷日报）的 NoneBot2 插件。",
     usage="Provides commands to query OI/ACM-related information, including LeetCode daily challenges and Luogu daily reports.",
     config=Config,
     homepage="https://github.com/talentestors/nonebot-plugin-oi-helper",
@@ -33,7 +33,7 @@ __plugin_meta__ = PluginMetadata(
     supported_adapters=None,
     extra={
         "author": "talentestors",
-        "version": "0.5.2",
+        "version": "0.5.3",
         "tags": ["nonebot", "plugin", "OI", "ACM", "LeetCode", "Luogu"],
     },
 )

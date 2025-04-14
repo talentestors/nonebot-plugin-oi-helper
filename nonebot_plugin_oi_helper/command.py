@@ -18,7 +18,13 @@ format_luogu = json2text(json2text_get_luogu_news_text)
 
 # Commands
 
-today_contest = on_command("今日比赛", rule=to_me(), priority=5, block=True)
+today_contest = on_command(
+    "今日比赛",
+    aliases={"contests", "today_contests"},
+    rule=to_me(),
+    priority=5,
+    block=True,
+)
 
 
 @today_contest.handle()
@@ -30,7 +36,9 @@ async def handle_today_contests():
     await today_contest.finish(res)
 
 
-tomorrow_contests = on_command("明日比赛", rule=to_me(), priority=5, block=True)
+tomorrow_contests = on_command(
+    "明日比赛", aliases={"tomorrow_contests"}, rule=to_me(), priority=5, block=True
+)
 
 
 @tomorrow_contests.handle()
@@ -42,7 +50,9 @@ async def handle_tomorrow_contests():
     await tomorrow_contests.finish(res)
 
 
-leetcode_daily = on_command("每日一题", rule=to_me(), priority=5, block=True)
+leetcode_daily = on_command(
+    "每日一题", aliases={"leetcode_daily"}, rule=to_me(), priority=5, block=True
+)
 
 
 @leetcode_daily.handle()
@@ -51,7 +61,9 @@ async def handle_leetcode_daily():
     await leetcode_daily.finish(res)
 
 
-luogu_random_news = on_command("洛谷日报", rule=to_me(), priority=8, block=True)
+luogu_random_news = on_command(
+    "洛谷日报", aliases={"luogu_daily"}, rule=to_me(), priority=8, block=True
+)
 
 
 @luogu_random_news.handle()
