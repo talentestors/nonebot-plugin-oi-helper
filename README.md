@@ -35,7 +35,7 @@ _✨ 一个提供 OI/ACM 相关信息的 nonebot2 插件 ✨_
 在 nonebot2 项目的根目录下打开命令行, 输入以下指令即可安装
 
 ```bash
-nb plugin install nonebot-plugin-oi-help # 未上架商店
+nb plugin install nonebot-plugin-oi-helper
 ```
 
 </details>
@@ -49,7 +49,7 @@ nb plugin install nonebot-plugin-oi-help # 未上架商店
 <summary>pip</summary>
 
 ```bash
-pip install nonebot-plugin-oi-help
+pip install nonebot-plugin-oi-helper
 ```
 
 </details>
@@ -58,7 +58,7 @@ pip install nonebot-plugin-oi-help
 <summary>pdm</summary>
 
 ```bash
-pdm add nonebot-plugin-oi-help
+pdm add nonebot-plugin-oi-helper
 ```
 
 </details>
@@ -67,7 +67,7 @@ pdm add nonebot-plugin-oi-help
 <summary>poetry</summary>
 
 ```bash
-poetry add nonebot-plugin-oi-help
+poetry add nonebot-plugin-oi-helper
 ```
 
 </details>
@@ -76,7 +76,7 @@ poetry add nonebot-plugin-oi-help
 <summary>conda</summary>
 
 ```bash
-conda install nonebot-plugin-oi-help
+conda install nonebot-plugin-oi-helper
 ```
 
 </details>
@@ -91,7 +91,7 @@ conda install nonebot-plugin-oi-help
 > Documents: <https://docs.astral.sh/uv/>
 
 ```bash
-uv add nonebot-plugin-oi-help
+uv add nonebot-plugin-oi-helper
 ```
 
 </details>
@@ -99,7 +99,7 @@ uv add nonebot-plugin-oi-help
 打开 nonebot2 项目根目录下的 `pyproject.toml` 文件, 在 `[tool.nonebot]` 部分追加写入
 
 ```bash
-plugins = ["nonebot-plugin-oi-help"]
+plugins = ["nonebot-plugin-oi-helper"]
 ```
 
 </details>
@@ -136,7 +136,7 @@ CLIST__USER_KEY=cc4a4d946b628bfbd606b75417daf496bac7e200
 2. 如果你是新用户，你需要新建一个账户。
 3. 前往 <https://clist.by/api/v4/doc/> 页面也可以从这里进去：
     ![api](./docs/img/image.png)
-4. 点 *here* 获取你的 API KEY
+4. 点 _here_ 获取你的 API KEY
     > Accessing the API requires an API key, which is available to authenticated users _here_.
 
     ![here](./docs/img/guide.png)
@@ -154,7 +154,7 @@ CLIST__USER_KEY=cc4a4d946b628bfbd606b75417daf496bac7e200
 
 <https://clist.by/settings/filters/>
 
-点击 *create* 去创建一个规则
+点击 _create_ 去创建一个规则
 
 `Resources` 项，能筛选对应的平台。
 
