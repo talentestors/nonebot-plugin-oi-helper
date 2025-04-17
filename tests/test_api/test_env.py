@@ -3,11 +3,10 @@ from nonebot.log import logger
 from dotenv import load_dotenv
 from nonebot_plugin_oi_helper import config
 
-# Load the environment variables
-load_dotenv()
-
 
 def test_env():
+    # Load the environment variables
+    load_dotenv()
     environment = os.getenv("ENVIRONMENT")
     driver = os.getenv("DRIVER")
     log_level = os.getenv("LOG_LEVEL")

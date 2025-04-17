@@ -57,7 +57,6 @@ def checkLeetcodeDailyData(_data) -> bool:
 
 
 async def getLeetcodeDaily():
-    load_json.cache_clear()
     _data = load_json(dirs.leetcode_daily)
     logger.debug("LeetCode Daily Question: " + str(_data))
     if checkLeetcodeDailyData(_data):

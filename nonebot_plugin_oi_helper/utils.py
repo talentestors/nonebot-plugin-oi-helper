@@ -1,4 +1,3 @@
-from functools import lru_cache
 import json
 from nonebot.log import logger
 from pathlib import Path
@@ -31,12 +30,10 @@ class Dirs:
 dirs: Dirs = Dirs.get_dirs(plugin_cache_dir)
 
 
-@lru_cache(maxsize=8)
 def load_json(cache_file: Path):
     logger.debug(f"load_json: {cache_file}")
     if cache_file.exists():
         data = cache_file.read_text(encoding="utf8")
-        # logger.debug(f"load_json: {data}")
         return json.loads(data)
     return {}
 
