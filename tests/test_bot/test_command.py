@@ -71,7 +71,3 @@ async def test_leetcode_daily(app: App):
         ctx.receive_event(bot, event)
         ctx.should_call_send(event, msg, result=None)
         ctx.should_finished(leetcode_daily)
-
-
-async def test_luogu_news(app: App):
-    assert True, "Not implemented yet"

@@ -4,17 +4,14 @@ from nonebot.rule import to_me
 from .query_api import (
     get_today_contests,
     get_tomorrow_contests,
-    get_luogu_random_news,
     get_leetcode_daily,
     json2text_for_leetcode_daily_info,
     json2text,
-    json2text_get_luogu_news_text,
     json2text_for_contest,
 )
 
 format_contests = json2text(json2text_for_contest)
 format_leetcode = json2text(json2text_for_leetcode_daily_info)
-format_luogu = json2text(json2text_get_luogu_news_text)
 
 # Commands
 
@@ -59,14 +56,3 @@ leetcode_daily = on_command(
 async def handle_leetcode_daily():
     res = format_leetcode(await get_leetcode_daily())
     await leetcode_daily.finish(res)
-
-
-luogu_random_news = on_command(
-    "洛谷日报", aliases={"luogu_daily"}, rule=to_me(), priority=8, block=True
-)
-
-
-@luogu_random_news.handle()
-async def handle_luogu_random_news():
-    res = format_luogu(await get_luogu_random_news())
-    await luogu_random_news.finish(res)
