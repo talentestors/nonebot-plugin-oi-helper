@@ -18,7 +18,7 @@ colorama==0.4.6
     # via loguru
 exceptiongroup==1.2.2
     # via nonebot2
-frozenlist==1.5.0
+frozenlist==1.6.0
     # via
     #   aiohttp
     #   aiosignal
