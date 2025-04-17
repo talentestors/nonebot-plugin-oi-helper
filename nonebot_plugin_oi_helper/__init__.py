@@ -52,10 +52,10 @@ logger.info("request url: " + config.clist.req_url)
 
 __all__ = ["api_config", "config"]
 
-from .command import *  # noqa: E402, F403
 from .scheduler import *  # noqa: E402, F403
 
 drivers = nonebot.get_driver()
 drivers.on_startup(init)  # noqa: F405
-
 logger.info("scheduler first controller loaded")
+
+from .command import *  # noqa: E402, F403

@@ -31,7 +31,7 @@ runs:
         export ENVIRONMENT=dev
         export CLIST__USERNAME=${{ inputs.CLIST__USERNAME }}
         export CLIST__USER_KEY=${{ inputs.CLIST__USER_KEY }}
-        uv run pytest tests --junitxml=junit/test-results.xml
+        uv run pytest -v -s tests --junitxml=junit/test-results.xml
       shell: bash
 
     - name: Upload pytest results

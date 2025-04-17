@@ -1,4 +1,3 @@
-import random
 from . import logger
 from datetime import datetime, timedelta
 from .utils import (

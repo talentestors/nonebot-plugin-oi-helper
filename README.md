@@ -121,7 +121,7 @@ plugins = ["nonebot_plugin_oi_helper"]
 ```ini
 # nonebot-plugin-oi-helper 配置
 CLIST__USERNAME=talentestors
-CLIST__USER_KEY=cc4a4d946b628bfbd606b75417daf496bac7e200
+CLIST__USER_KEY=b4c1d76de149ef89cf0542b59a567f7c6b4af952
 # clist API 地址
 # CLIST_API__REQ_URL=
 ```
