@@ -15,7 +15,6 @@ async def getContest():
             resp.raise_for_status()
             logger.info("getContest SUCCESS " + str(resp.status))
             data = await resp.json()
-
     contests = []
     for contest in data["objects"]:
         name = contest["event"]
@@ -40,58 +39,6 @@ async def getContest():
                 new_contest = leetcode_locale_to_zh(new_contest)
         contests.append(new_contest)
     save_json(dirs.contests, contests)
-    load_json.cache_clear()
-
-
-async def getLuoguDaily():
-    url = "https://www.craft.do/api/share/N0l80k2gv46Psq"
-    logger.debug("GET " + url)
-    async with aiohttp.ClientSession() as session:
-        async with session.get(
-            url, timeout=aiohttp.ClientTimeout(total=10)
-        ) as response:
-            response.raise_for_status()
-            logger.info("getLuoguYuebao SUCCESS " + str(response.status))
-            data = await response.json()
-
-    tmp = {block["id"]: block for block in data["blocks"]}
-    top = data["blocks"][0]["id"]
-    news = {}
-
-    for title_id in tmp[top]["blocks"]:
-        title = tmp[title_id]
-        if "关键词" in title["content"]:
-            continue
-        year = int(title["content"].strip("年").strip())
-
-        id = ""
-        url = ""
-        pos = 0
-        up = len(title["blocks"])
-        while pos < up:
-            text = tmp[title["blocks"][pos]]["content"]
-
-            if "月" in text:
-                month = int(text.strip("月").strip(""))
-                pos += 1
-
-                text = tmp[title["blocks"][pos]]["content"].replace("\u3000", " ")
-
-                while text.startswith("#"):
-                    name = text
-                    id = text.split(" ")[0]
-                    pos += 1
-                    url = tmp[title["blocks"][pos]]["content"]
-                    news[id] = {"title": name, "url": url, "year": year, "month": month}
-                    pos += 1
-                    if pos >= up:
-                        break
-                    text = tmp[title["blocks"][pos]]["content"].replace("\u3000", " ")
-            else:
-                pos += 1
-
-    save_json(dirs.luogu_news, news)
-    load_json.cache_clear()
 
 
 LeetCode_Headers = {
@@ -177,5 +124,4 @@ async def getLeetcodeDaily():
             logger.info("getLeetcodeDaily SUCCESS " + str(response.status))
         logger.debug("data: " + str(data))
         save_json(dirs.leetcode_daily, data)
-        load_json.cache_clear()
     return data

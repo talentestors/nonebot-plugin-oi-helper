@@ -52,32 +52,7 @@ async def loadContestMsgSchedule():
     logger.success("比赛信息已更新")
 
 
-async def loadLuoGuDailyMsg():
-    try:
-        await api.getLuoguDaily()
-    except Exception:
-        logger.error("洛谷日报定时更新时遇到错误：")
-        logger.info("再次尝试获取洛谷日报信息")
-        try:
-            await api.getLuoguDaily()
-        except Exception as e:
-            logger.exception(e)
-            logger.error("再次尝试获取洛谷日报信息时遇到错误：\n")
-
-
-@scheduler.scheduled_job(
-    "interval",
-    days=1,
-    id="loadLuoGuDailyMsg",
-    next_run_time=(datetime.now() + timedelta(seconds=3)),
-)
-async def loadLuoGuDailyMsgSchedule():
-    await loadLuoGuDailyMsg()
-    logger.success("洛谷日报已更新")
-
-
 async def init():
     """first load data"""
     await loadContestMsg()
-    await loadLuoGuDailyMsg()
     await loadLeetCodeDailyMsg()

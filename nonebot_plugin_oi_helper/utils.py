@@ -10,12 +10,10 @@ plugin_cache_dir: Path = store.get_plugin_cache_dir()
 
 class Dirs:
     CONTESTS = "contests.json"
-    LUOGU_NEWS = "luogu_news.json"
     LEETCODE_DAILY = "leetcode_daily.json"
 
     def __init__(self, path: Path):
         self.contests: Path = path / Dirs.CONTESTS
-        self.luogu_news: Path = path / Dirs.LUOGU_NEWS
         self.leetcode_daily: Path = path / Dirs.LEETCODE_DAILY
         logger.debug(f"Dirs: {self}")
 
@@ -121,14 +119,5 @@ def json2text_for_contest_zh(contest_data: dict) -> str:
 结束时间: {contest_data["end_time"]}
 时长: {contest_data["duration"] // 60} 分钟
 链接: {contest_data["link"]}
-"""
-    return text
-
-
-def json2text_get_luogu_news_text(news: dict) -> str:
-    news["url"] = filter.replace(news["url"])
-    text = f"""{news["year"]}年{news["month"]}月
-{news["title"]}
-URL: {news["url"]}
 """
     return text
