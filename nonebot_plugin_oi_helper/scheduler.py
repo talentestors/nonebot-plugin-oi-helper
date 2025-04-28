@@ -18,8 +18,9 @@ async def loadLeetCodeDailyMsg():
 
 
 @scheduler.scheduled_job(
-    "interval",
-    days=1,
+    "cron",
+    minute=1,
+    hour="0,1,12",
     id="loadLeetCodeDailyMsg",
     next_run_time=(datetime.now() + timedelta(seconds=1)),
 )
@@ -42,8 +43,8 @@ async def loadContestMsg():
 
 
 @scheduler.scheduled_job(
-    "cron",
-    hour="2, 14",
+    "interval",
+    hours=6,
     id="loadContestMsg",
     next_run_time=(datetime.now() + timedelta(seconds=2)),
 )
