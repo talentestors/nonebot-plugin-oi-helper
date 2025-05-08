@@ -30,7 +30,6 @@ async def loadLeetCodeDailyMsgSchedule():
         await loadLeetCodeDailyMsg()
         logger.success("力扣每日一题已更新")
     except Exception as e:
-        logger.exception("")
         logger.error(f"力扣每日一题更新失败：{e}")
 
 
