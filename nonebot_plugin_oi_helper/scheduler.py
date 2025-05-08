@@ -15,6 +15,7 @@ async def loadLeetCodeDailyMsg():
         except Exception as e:
             logger.exception(e)
             logger.error("再次尝试获取力扣每日一题信息时遇到错误：\n")
+            raise Exception("获取力扣每日一题信息失败")
 
 
 @scheduler.scheduled_job(
@@ -25,8 +26,11 @@ async def loadLeetCodeDailyMsg():
     next_run_time=(datetime.now() + timedelta(seconds=1)),
 )
 async def loadLeetCodeDailyMsgSchedule():
-    await loadLeetCodeDailyMsg()
-    logger.success("力扣每日一题已更新")
+    try:
+        await loadLeetCodeDailyMsg()
+        logger.success("力扣每日一题已更新")
+    except Exception as e:
+        logger.error(f"力扣每日一题更新失败：{e}")
 
 
 async def loadContestMsg():
@@ -40,6 +44,7 @@ async def loadContestMsg():
         except Exception as e:
             logger.exception(e)
             logger.error("再次尝试获取比赛信息时遇到错误：\n")
+            raise Exception("获取比赛信息失败")
 
 
 @scheduler.scheduled_job(
@@ -49,8 +54,11 @@ async def loadContestMsg():
     next_run_time=(datetime.now() + timedelta(seconds=2)),
 )
 async def loadContestMsgSchedule():
-    await loadContestMsg()
-    logger.success("比赛信息已更新")
+    try:
+        await loadContestMsg()
+        logger.success("比赛信息已更新")
+    except Exception as e:
+        logger.error(f"比赛信息更新失败：{e}")
 
 
 async def init():
