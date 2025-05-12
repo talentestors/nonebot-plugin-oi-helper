@@ -2,7 +2,6 @@ import json
 from nonebot.log import logger
 from pathlib import Path
 import nonebot_plugin_localstore as store
-from .filter import filter
 
 plugin_cache_dir: Path = store.get_plugin_cache_dir()
 
@@ -89,7 +88,6 @@ def json2text(formatter=None):
 
 
 def json2text_for_leetcode_daily_info(leetcode_data: dict) -> str:
-    leetcode_data["url"] = filter.replace(leetcode_data["url"])
     text = f"""{leetcode_data["title"]}
 Date: {leetcode_data["date"]}
 Difficulty: {leetcode_data["difficulty"]}
@@ -99,7 +97,6 @@ URL: {leetcode_data["url"]}
 
 
 def json2text_for_contest(contest_data: dict) -> str:
-    contest_data["link"] = filter.replace(contest_data["link"])
     text = f"""Name: {contest_data["name"]}
 Start Time: {contest_data["start_time"]}
 End Time: {contest_data["end_time"]}
@@ -110,7 +107,6 @@ Link: {contest_data["link"]}
 
 
 def json2text_for_contest_zh(contest_data: dict) -> str:
-    contest_data["link"] = filter.replace(contest_data["link"])
     text = f"""比赛名称: {contest_data["name"]}
 开始时间: {contest_data["start_time"]}
 结束时间: {contest_data["end_time"]}
