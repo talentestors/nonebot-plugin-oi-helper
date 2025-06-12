@@ -77,7 +77,7 @@ tzlocal==5.3.1
     # via apscheduler
 win32-setctime==1.2.0
     # via loguru
-yarl==1.20.0
+yarl==1.20.1
     # via
     #   aiohttp
     #   nonebot2
