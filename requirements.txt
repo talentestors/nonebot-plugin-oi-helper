@@ -28,7 +28,7 @@ idna==3.10
     #   yarl
 loguru==0.7.3
     # via nonebot2
-multidict==6.5.0
+multidict==6.5.1
     # via
     #   aiohttp
     #   yarl
