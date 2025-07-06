@@ -1,5 +1,6 @@
 import aiohttp
 import re
+import json
 from nonebot.log import logger
 from datetime import datetime, timedelta
 from .utils import leetcode_locale_to_zh, load_json, save_json, dirs
@@ -111,8 +112,6 @@ async def getLeetcodeDaily():
                             logger.error("响应似乎是HTML页面，可能被反爬虫机制拦截")
                             logger.debug(f"HTML response: {response_text[:500]}")
                             raise Exception("获取到HTML响应，可能被反爬虫机制拦截")
-
-                        import json
 
                         RawData = json.loads(response_text)
                         logger.trace("response received and parsed")
