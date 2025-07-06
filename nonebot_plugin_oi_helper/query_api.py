@@ -146,6 +146,10 @@ async def get_leetcode_daily():
         >>> print(data)
     """
     data = load_json(dirs.leetcode_daily)
+    # 如果数据为空字典，先尝试获取数据
+    if not data or data == {}:
+        return []
+
     if isinstance(data, list):
         return data
     return [data]

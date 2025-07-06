@@ -49,7 +49,7 @@ LeetCode_Headers = {
     "content-type": "application/json",
     "accept": "application/json",
     "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
-    "accept-encoding": "gzip, deflate, br",
+    "accept-encoding": "gzip, deflate",
 }
 
 
