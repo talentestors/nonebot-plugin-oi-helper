@@ -14,6 +14,8 @@ apscheduler==3.11.0
     # via nonebot-plugin-apscheduler
 attrs==25.3.0
     # via aiohttp
+brotli==1.1.0
+    # via nonebot-plugin-oi-helper (pyproject.toml)
 colorama==0.4.6
     # via loguru
 exceptiongroup==1.3.0
@@ -62,6 +64,7 @@ sniffio==1.3.1
     # via anyio
 typing-extensions==4.14.1
     # via
+    #   aiosignal
     #   anyio
     #   exceptiongroup
     #   nonebot-plugin-localstore
