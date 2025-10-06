@@ -45,7 +45,7 @@ nonebot2==2.4.3
     #   nonebot-plugin-localstore
 nonestorage==0.1.0
     # via nonebot-plugin-localstore
-propcache==0.3.2
+propcache==0.4.0
     # via
     #   aiohttp
     #   yarl
