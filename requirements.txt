@@ -12,7 +12,7 @@ anyio==4.11.0
     # via nonebot2
 apscheduler==3.11.0
     # via nonebot-plugin-apscheduler
-attrs==25.3.0
+attrs==25.4.0
     # via aiohttp
 brotli==1.1.0
     # via nonebot-plugin-oi-helper (pyproject.toml)
