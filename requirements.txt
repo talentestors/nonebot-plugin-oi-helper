@@ -49,7 +49,7 @@ propcache==0.4.1
     # via
     #   aiohttp
     #   yarl
-pydantic==2.12.3
+pydantic==2.12.4
     # via
     #   nonebot-plugin-apscheduler
     #   nonebot-plugin-localstore
