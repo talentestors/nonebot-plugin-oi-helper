@@ -14,6 +14,8 @@ apscheduler==3.11.0
     # via nonebot-plugin-apscheduler
 attrs==25.3.0
     # via aiohttp
+brotli==1.2.0
+    # via nonebot-plugin-oi-helper (pyproject.toml)
 colorama==0.4.6
     # via loguru
 exceptiongroup==1.3.0
@@ -52,7 +54,7 @@ pydantic==2.11.7
     #   nonebot-plugin-apscheduler
     #   nonebot-plugin-localstore
     #   nonebot2
-pydantic-core==2.35.2
+pydantic-core==2.33.2
     # via pydantic
 pygtrie==2.5.0
     # via nonebot2
@@ -62,6 +64,7 @@ sniffio==1.3.1
     # via anyio
 typing-extensions==4.14.1
     # via
+    #   aiosignal
     #   anyio
     #   exceptiongroup
     #   nonebot-plugin-localstore
