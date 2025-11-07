@@ -34,7 +34,7 @@ dependencies = [
 dev = [
     "nonebot-adapter-console>=0.6.0",
     "nonebug>=0.4.3",
-    "nonechat==0.3.0",
+    "nonechat==0.6.1",
     "pip>=24.3.1",
     "pytest-asyncio>=1.0.0",
 ]
