@@ -2,6 +2,7 @@ from datetime import datetime
 from nonebug import App
 from nonebot.adapters.console import User, Message, MessageEvent
 from nonebot.log import logger
+import pytest
 
 
 def make_event(message: str = "") -> MessageEvent:
@@ -13,6 +14,7 @@ def make_event(message: str = "") -> MessageEvent:
     )
 
 
+@pytest.mark.asyncio
 async def test_today_contest(app: App):
     from nonebot_plugin_oi_helper.command import (
         today_contest,
@@ -24,7 +26,7 @@ async def test_today_contest(app: App):
     if msg == "":
         msg = "今天没有比赛哦！"
     msg = f"Today's Contest:\n{msg}"
-    logger.trace(msg)
+    logger.debug(msg)
 
     async with app.test_matcher(today_contest) as ctx:
         event = make_event("/今日比赛")
@@ -34,6 +36,7 @@ async def test_today_contest(app: App):
         ctx.should_finished(today_contest)
 
 
+@pytest.mark.asyncio
 async def test_tomorrow_contests(app: App):
     from nonebot_plugin_oi_helper.command import (
         tomorrow_contests,
@@ -45,7 +48,7 @@ async def test_tomorrow_contests(app: App):
     if msg == "":
         msg = "明天没有比赛哦！"
     msg = f"Tomorrow's Contest:\n{msg}"
-    logger.trace(msg)
+    logger.debug(msg)
 
     async with app.test_matcher(tomorrow_contests) as ctx:
         event = make_event("/明日比赛")
@@ -55,6 +58,7 @@ async def test_tomorrow_contests(app: App):
         ctx.should_finished(tomorrow_contests)
 
 
+@pytest.mark.asyncio
 async def test_leetcode_daily(app: App):
     from nonebot_plugin_oi_helper.command import (
         leetcode_daily,
@@ -63,7 +67,7 @@ async def test_leetcode_daily(app: App):
     )
 
     msg = format_leetcode(await get_leetcode_daily())
-    logger.trace(msg)
+    logger.debug(msg)
 
     async with app.test_matcher(leetcode_daily) as ctx:
         event = make_event("/每日一题")

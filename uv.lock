@@ -794,7 +794,7 @@ wheels = [
 
 [[package]]
 name = "nonebot-plugin-oi-helper"
-version = "0.7.3"
+version = "0.7.5"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
@@ -814,7 +814,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aiohttp", specifier = ">=3.13.0" },
+    { name = "aiohttp", specifier = ">=3.12.0" },
     { name = "brotli", specifier = ">=1.2.0" },
     { name = "nonebot-plugin-apscheduler", specifier = ">=0.5.0" },
     { name = "nonebot-plugin-localstore", specifier = ">=0.7.4" },
@@ -826,7 +826,7 @@ dev = [
     { name = "nonebot-adapter-console", specifier = ">=0.9.0" },
     { name = "nonebug", specifier = ">=0.4.3" },
     { name = "pip", specifier = ">=24.3.1" },
-    { name = "pytest-asyncio", specifier = ">=1.2.0" },
+    { name = "pytest-asyncio", specifier = ">=1.0.0" },
 ]
 
 [[package]]
