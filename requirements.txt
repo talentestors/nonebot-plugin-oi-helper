@@ -10,7 +10,7 @@ annotated-types==0.7.0
     # via pydantic
 anyio==4.12.0
     # via nonebot2
-apscheduler==3.11.1
+apscheduler==3.11.2
     # via nonebot-plugin-apscheduler
 attrs==25.4.0
     # via aiohttp
