@@ -58,7 +58,9 @@ jobs:
           fail_on_unmatched_files: true
           generate_release_notes: true
           prerelease: false
-          files: dist/*
+          files: |
+            dist/*.gz
+            dist/*.whl
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifacts
