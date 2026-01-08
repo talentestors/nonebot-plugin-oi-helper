@@ -1,5 +1,6 @@
 import aiohttp
 import re
+import asyncio
 import json
 from nonebot.log import logger
 from datetime import datetime, timedelta
@@ -44,12 +45,13 @@ async def getContest():
 
 LeetCode_Headers = {
     "origin": "https://leetcode.cn",
-    "referer": "https://leetcode.cn/problemset/all/",
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+    "referer": "https://leetcode.cn/",
+    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
     "content-type": "application/json",
-    "accept": "application/json",
+    "accept": "*/*",
+    "host": "leetcode.cn",
     "accept-language": "zh-CN,zh;q=0.9,en;q=0.8",
-    "accept-encoding": "gzip, deflate",
+    "accept-encoding": "gzip, deflate, br, zstd",
 }
 
 
@@ -82,13 +84,14 @@ async def getLeetcodeDaily():
                 async with session.post(
                     "https://leetcode.cn/graphql",
                     json={
-                        "operationName": "questionOfToday",
-                        "variables": {},
-                        "query": "query questionOfToday { todayRecord {   question {     questionFrontendId     questionTitleSlug     __typename   }   lastSubmission {     id     __typename   }   date   userStatus   __typename }}",
+                        "operationName": "CalendarTaskSchedule",
+                        "variables": {"days": 0},
+                        "query": "query CalendarTaskSchedule($days: Int!) {    calendarTaskSchedule(days: $days) {        contests { id name slug progress link premiumOnly }        dailyQuestions { id name slug progress link premiumOnly }        studyPlans { id name slug progress link premiumOnly }     }}",
                     },
                     headers=LeetCode_Headers,
-                    timeout=aiohttp.ClientTimeout(total=15),
+                    timeout=aiohttp.ClientTimeout(total=30),
                 ) as response:
+                    response_text = ""
                     logger.debug(f"Response status: {response.status}")
                     logger.debug(f"Response headers: {dict(response.headers)}")
 
@@ -130,19 +133,19 @@ async def getLeetcodeDaily():
                         raise Exception("API返回的数据结构不正确")
 
                     if (
-                        "todayRecord" not in RawData["data"]
-                        or not RawData["data"]["todayRecord"]
+                        "calendarTaskSchedule" not in RawData["data"]
+                        or not RawData["data"]["calendarTaskSchedule"]
                     ):
                         logger.error("没有找到今日题目记录")
                         logger.debug(f"RawData: {RawData}")
                         raise Exception("没有找到今日题目记录")
 
-                    EnglishTitle = RawData["data"]["todayRecord"][0]["question"][
-                        "questionTitleSlug"
-                    ]
-                    Date = RawData["data"]["todayRecord"][0]["date"]
-                    QuestionUrl = f"https://leetcode.cn/problems/{EnglishTitle}"
-
+                    dailyQuestions = RawData["data"]["calendarTaskSchedule"][
+                        "dailyQuestions"
+                    ][0]
+                    EnglishTitle = dailyQuestions["slug"]
+                    QuestionUrl = dailyQuestions["link"]
+                await asyncio.sleep(10)
                 # 第二个请求：获取题目详细信息
                 async with session.post(
                     "https://leetcode.cn/graphql",
@@ -152,7 +155,7 @@ async def getLeetcodeDaily():
                         "query": "query questionData($titleSlug: String!) {  question(titleSlug: $titleSlug) {    questionId    questionFrontendId    boundTopicId    title    titleSlug    content    translatedTitle    translatedContent    isPaidOnly    difficulty    likes    dislikes    isLiked    similarQuestions    contributors {      username      profileUrl      avatarUrl      __typename    }    langToValidPlayground    topicTags {      name      slug      translatedName      __typename    }    companyTagStats    codeSnippets {      lang      langSlug      code      __typename    }    stats    hints    solution {      id      canSeeDetail      __typename    }    status    sampleTestCase    metaData    judgerAvailable    judgeType    mysqlSchemas    enableRunCode    envInfo    book {      id      bookName      pressName      source      shortDescription      fullDescription      bookImgUrl      pressImgUrl      productUrl      __typename    }    isSubscribed    isDailyQuestion    dailyRecordStatus    editorType    ugcQuestionId    style    __typename  }}",
                     },
                     headers=LeetCode_Headers,
-                    timeout=aiohttp.ClientTimeout(total=15),
+                    timeout=aiohttp.ClientTimeout(total=30),
                 ) as response:
                     if response.status != 200:
                         logger.error(f"获取题目详情时HTTP错误: {response.status}")
@@ -181,7 +184,7 @@ async def getLeetcodeDaily():
                         "difficulty": Difficulty,
                         "content": Content,
                         "url": QuestionUrl,
-                        "date": Date,
+                        "date": datetime.now().strftime("%Y-%m-%d"),
                     }
                     logger.info("getLeetcodeDaily SUCCESS " + str(response.status))
                     logger.debug("data: " + str(data))
@@ -191,8 +194,6 @@ async def getLeetcodeDaily():
         except Exception as e:
             logger.error(f"第{attempt + 1}次尝试获取力扣每日一题失败: {e}")
             if attempt < max_retries - 1:
-                import asyncio
-
                 await asyncio.sleep(2**attempt)  # 指数退避
             else:
                 logger.error("所有重试均失败")
