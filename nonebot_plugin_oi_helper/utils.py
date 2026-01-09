@@ -1,4 +1,5 @@
 import json
+from datetime import datetime, timedelta
 from nonebot.log import logger
 from pathlib import Path
 import nonebot_plugin_localstore as store
@@ -37,11 +38,16 @@ def load_json(cache_file: Path):
     return {}
 
 
-def save_json(cache_file: Path, args):
-    logger.debug(f"save_json: {cache_file}")
-    cache_file.write_text(
-        json.dumps(args, ensure_ascii=False, indent=2), encoding="utf8"
-    )
+def save_json(filepath: Path, data: dict | list):
+    """Safely save JSON file"""
+    try:
+        filepath.parent.mkdir(parents=True, exist_ok=True)
+        with filepath.open("w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        return True
+    except Exception as e:
+        print(f"Error saving file: {e}")
+        return False
 
 
 # Convert LeetCode to local Chinese version
@@ -88,29 +94,54 @@ def json2text(formatter=None):
 
 
 def json2text_for_leetcode_daily_info(leetcode_data: dict) -> str:
-    text = f"""{leetcode_data["title"]}
-Date: {leetcode_data["date"]}
-Difficulty: {leetcode_data["difficulty"]}
-URL: {leetcode_data["url"]}
-"""
+    tags = [tag["translatedName"] for tag in leetcode_data["topicTags"]]
+    text = f"""
+🔥LeetCodeDaily：{leetcode_data["title_zh"]}
+Link: {leetcode_data["link"]}
+difficulty：{leetcode_data["difficulty"]}
+Tags: {", ".join(tags)}
+Time: {leetcode_data["date"]}
+""".strip()
+    return text
+
+
+def json2text_for_leetcode_daily_info_zh(leetcode_data: dict) -> str:
+    tags = [tag["translatedName"] for tag in leetcode_data["topicTags"]]
+    text = f"""
+🔥每日一题：{leetcode_data["title_zh"]}
+题目链接：{leetcode_data["link"]}
+难度：{leetcode_data["difficulty"]}
+标签：{", ".join(tags)}
+时间：{leetcode_data["date"]}
+""".strip()
     return text
 
 
 def json2text_for_contest(contest_data: dict) -> str:
-    text = f"""Name: {contest_data["name"]}
+    text = f"""
+Name: {contest_data["name"]}
 Start Time: {contest_data["start_time"]}
 End Time: {contest_data["end_time"]}
 Duration: {contest_data["duration"] // 60} minutes
 Link: {contest_data["link"]}
-"""
+""".strip()
     return text
 
 
 def json2text_for_contest_zh(contest_data: dict) -> str:
-    text = f"""比赛名称: {contest_data["name"]}
+    text = f"""
+比赛名称: {contest_data["name"]}
 开始时间: {contest_data["start_time"]}
 结束时间: {contest_data["end_time"]}
 时长: {contest_data["duration"] // 60} 分钟
 链接: {contest_data["link"]}
-"""
+""".strip()
     return text
+
+
+def checkLeetcodeDailyData(_data) -> bool:
+    if _data == {}:
+        return False
+    now = datetime.now()
+    cache_time = datetime.strptime(_data["date"], "%Y-%m-%d")
+    return now - cache_time < timedelta(days=1)

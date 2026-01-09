@@ -2,22 +2,22 @@ from datetime import datetime, timedelta
 from nonebot_plugin_apscheduler import scheduler
 from nonebot.log import logger
 from . import api
+from . import leetcode_api
 
 
 async def loadLeetCodeDailyMsg():
     try:
-        await api.getLeetcodeDaily()
+        await leetcode_api.run()
         logger.info("力扣每日一题更新成功")
     except Exception as e:
         logger.error(f"力扣每日一题定时更新时遇到错误: {e}")
         logger.info("再次尝试获取力扣每日一题信息")
         try:
-            await api.getLeetcodeDaily()
+            await leetcode_api.run()
             logger.info("力扣每日一题更新成功（重试）")
         except Exception as e2:
             logger.exception(f"再次尝试获取力扣每日一题信息时遇到错误: {e2}")
             logger.error("力扣每日一题更新失败，将在下次调度时再次尝试")
-            # 不再抛出异常，避免程序启动失败
             return False
     return True
 

@@ -17,6 +17,12 @@ _✨ 一个提供 OI/ACM 相关信息的 nonebot2 插件 ✨_
 
 </div>
 
+> [!WARNING]
+>
+> v1 版本已重构，基于 HTTP/2
+>
+> aiohttp 替换为 httpx
+
 ## 📖 介绍
 
 一个基于 <https://clist.by> v4 接口，提供 OI/ACM 相关信息查询的 nonebot2 插件。
@@ -163,4 +169,4 @@ CLIST__USER_KEY=b4c1d76de149ef89cf0542b59a567f7c6b4af952
 
 ## 🎉 使用
 
-[See docs](https://github.com/talentestors/nonebot-plugin-oi-helper/blob/main/docs/README.md)
+[See docs](./docs/README.md)
