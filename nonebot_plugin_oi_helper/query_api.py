@@ -135,7 +135,7 @@ async def get_now_contests():
 # LeetCode Daily
 
 
-async def get_leetcode_daily():
+async def get_leetcode_daily() -> list:
     """Get LeetCode daily.
 
     Returns:
@@ -146,7 +146,6 @@ async def get_leetcode_daily():
         >>> print(data)
     """
     data = load_json(dirs.leetcode_daily)
-    # 如果数据为空字典，先尝试获取数据
     if not data or data == {}:
         return []
 

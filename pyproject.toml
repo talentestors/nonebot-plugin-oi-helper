@@ -1,9 +1,9 @@
 [project]
 name = "nonebot-plugin-oi-helper"
-version = "0.7.7"
+version = "1.0.0"
 description = "A NoneBot2 plugin for querying OI/ACM related information, including LeetCode daily question."
 readme = "README.md"
-requires-python = ">=3.10, <4.0"
+requires-python = ">=3.12, <4.0"
 authors = [{ name = "talentestors", email = "talentestors@outlook.com" }]
 license = { text = "AGPL-3.0-or-later" }
 
@@ -13,8 +13,7 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
@@ -24,7 +23,8 @@ classifiers = [
 ]
 
 dependencies = [
-    "aiohttp>=3.13.0",
+    "httpx[brotli,http2,zstd]>=0.28.1",
+    "tenacity>=9.1.2",
     "brotli>=1.2.0",
     "nonebot-plugin-apscheduler>=0.5.0",
     "nonebot-plugin-localstore>=0.7.4",
@@ -38,6 +38,7 @@ dev = [
     "nonebug>=0.4.3",
     "nonechat==0.3.0",
     "pip>=24.3.1",
+    "ruff>=0.14.11",
     "pytest-asyncio>=1.0.0",
 ]
 
@@ -55,5 +56,13 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build]
-include = ["pyproject.toml", "README.md", "LICENSE", "nonebot_plugin_oi_helper"]
-exclude = ["tests", "docs", "nonebot_plugin_oi_helper/.cache"]
+include = [
+    "pyproject.toml",
+    "README.md",
+    "LICENSE",
+    "nonebot_plugin_oi_helper"
+]
+exclude = ["tests",
+    "docs",
+    "nonebot_plugin_oi_helper/.cache"
+]
