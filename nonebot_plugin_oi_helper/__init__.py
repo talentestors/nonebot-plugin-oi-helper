@@ -33,7 +33,7 @@ __plugin_meta__ = PluginMetadata(
     supported_adapters=None,
     extra={
         "author": "talentestors",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "tags": ["nonebot", "plugin", "OI", "ACM", "LeetCode"],
     },
 )

@@ -102,7 +102,7 @@ difficulty：{leetcode_data["difficulty"]}
 Tags: {", ".join(tags)}
 Time: {leetcode_data["date"]}
 """.strip()
-    return text
+    return text + "\n"
 
 
 def json2text_for_leetcode_daily_info_zh(leetcode_data: dict) -> str:
@@ -114,7 +114,7 @@ def json2text_for_leetcode_daily_info_zh(leetcode_data: dict) -> str:
 标签：{", ".join(tags)}
 时间：{leetcode_data["date"]}
 """.strip()
-    return text
+    return text + "\n"
 
 
 def json2text_for_contest(contest_data: dict) -> str:
@@ -125,7 +125,7 @@ End Time: {contest_data["end_time"]}
 Duration: {contest_data["duration"] // 60} minutes
 Link: {contest_data["link"]}
 """.strip()
-    return text
+    return text + "\n"
 
 
 def json2text_for_contest_zh(contest_data: dict) -> str:
@@ -136,7 +136,7 @@ def json2text_for_contest_zh(contest_data: dict) -> str:
 时长: {contest_data["duration"] // 60} 分钟
 链接: {contest_data["link"]}
 """.strip()
-    return text
+    return text + "\n"
 
 
 def checkLeetcodeDailyData(_data) -> bool:
