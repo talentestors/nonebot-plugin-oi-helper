@@ -43,6 +43,7 @@ async def getContest():
                     new_contest = leetcode_locale_to_zh(new_contest)
             contests.append(new_contest)
         save_json(dirs.contests, contests)
+        return True
 
     except httpx.HTTPStatusError as e:
         logger.error(
