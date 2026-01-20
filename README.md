@@ -9,7 +9,7 @@
 
 _✨ 一个提供 OI/ACM 相关信息的 nonebot2 插件 ✨_
 
-[![license](https://img.shields.io/github/license/talentestors/nonebot-plugin-oi-helper.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
+[![license](https://img.shields.io/github/license/talentestors/nonebot-plugin-oi-helper.svg)](https://www.gnu.org/licenses/lgpl-3.0.html)
 [![pypi](https://img.shields.io/pypi/v/nonebot-plugin-oi-helper.svg)](https://pypi.python.org/pypi/nonebot-plugin-oi-helper)
 ![python](https://img.shields.io/badge/python-3.12+-blue.svg)
 ![downloads](https://img.shields.io/pypi/dm/nonebot-plugin-oi-helper)
