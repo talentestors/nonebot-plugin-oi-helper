@@ -1,18 +1,18 @@
 [project]
 name = "nonebot-plugin-oi-helper"
-version = "1.1.0"
+version = "2.0.0"
 description = "A NoneBot2 plugin for querying OI/ACM related information, including LeetCode daily question."
 readme = "README.md"
 requires-python = ">=3.12, <4.0"
 authors = [{ name = "talentestors", email = "talentestors@outlook.com" }]
-license = { text = "AGPL-3.0-or-later" }
+license = { text = "LGPL-3.0-or-later" }
 
 keywords = ["nonebot", "plugin", "OI", "ACM", "LeetCode"]
 
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -25,11 +25,9 @@ classifiers = [
 dependencies = [
     "httpx[brotli,http2,zstd]>=0.28.1",
     "tenacity>=9.1.2",
-    "brotli>=1.2.0",
     "nonebot-plugin-apscheduler>=0.5.0",
     "nonebot-plugin-localstore>=0.7.4",
     "nonebot2>=2.4.2",
-    "zstandard>=0.25.0",
 ]
 
 [dependency-groups]
@@ -37,7 +35,6 @@ dev = [
     "nonebot-adapter-console>=0.6.0",
     "nonebug>=0.4.3",
     "nonechat==0.3.0",
-    "pip>=24.3.1",
     "ruff>=0.14.11",
     "pytest-asyncio>=1.0.0",
 ]
