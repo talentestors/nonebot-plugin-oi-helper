@@ -14,6 +14,7 @@ _✨ 一个提供 OI/ACM 相关信息的 nonebot2 插件 ✨_
 ![python](https://img.shields.io/badge/python-3.12+-blue.svg)
 ![downloads](https://img.shields.io/pypi/dm/nonebot-plugin-oi-helper)
 [![Publish Release](https://github.com/talentestors/nonebot-plugin-oi-helper/actions/workflows/release-publish.yml/badge.svg)](https://github.com/talentestors/nonebot-plugin-oi-helper/actions/workflows/release-publish.yml)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftalentestors%2Fnonebot-plugin-oi-helper.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftalentestors%2Fnonebot-plugin-oi-helper?ref=badge_shield)
 
 </div>
 
@@ -170,3 +171,7 @@ CLIST__USER_KEY=b4c1d76de149ef89cf0542b59a567f7c6b4af952
 ## 🎉 使用
 
 [See docs](./docs/README.md)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Ftalentestors%2Fnonebot-plugin-oi-helper.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Ftalentestors%2Fnonebot-plugin-oi-helper?ref=badge_large)
